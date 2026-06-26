@@ -1,7 +1,12 @@
 {
-  "name": "trustos-api",
+  "name": "trustos-demo-v2",
   "version": "1.0.0",
-  "description": "Trust OS MVP API",
+  "description": "Developer API Playground for Trust OS.",
+  "homepage": "https://demo.trust-os.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trustos-trustfolio/trustos-demo-v2.git"
+  },
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
