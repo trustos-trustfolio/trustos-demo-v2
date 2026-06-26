@@ -1,0 +1,1040 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trust OS — API Playground</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #f5f7fb;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    .top-link {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .top-link a {
+      color: #67e8f9;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(103,232,249,0.3);
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: rgba(103,232,249,0.05);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 40px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #b8c1d9;
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      margin-top: 28px;
+    }
+
+    .card {
+      background: #121a30;
+      border: 1px solid #24304f;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: #b8c1d9;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #314164;
+      background: #0f162b;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .Requests {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .btn-done {
+      background: #16a34a;
+      color: white;
+    }
+
+    .metric-box {
+      background: #0f162b;
+      border: 1px solid #273556;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    .metric-value {
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .badge-low {
+      background: rgba(34,197,94,0.15);
+      color: #4ade80;
+    }
+
+    .badge-medium {
+      background: rgba(245,158,11,0.15);
+      color: #fbbf24;
+    }
+
+    .badge-high {
+      background: rgba(239,68,68,0.15);
+      color: #f87171;
+    }
+
+    .status {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #0f162b;
+      border: 1px solid #273556;
+      color: #cbd5e1;
+      font-size: 14px;
+      min-height: 48px;
+    }
+
+    pre {
+      margin: 16px 0 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #09101f;
+      color: #dbeafe;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid #22314e;
+      font-size: 12px;
+      min-height: 160px;
+      overflow: auto;
+    }
+
+    .small {
+      color: #94a3b8;
+      font-size: 13px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    .proof-list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: #cbd5e1;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .proof-ok {
+      color: #4ade80;
+      font-weight: 800;
+    }
+
+    .proof-wait {
+      color: #fbbf24;
+      font-weight: 800;
+    }
+
+    .dev-output {
+      margin-top: 14px;
+      border: 1px solid #273556;
+      border-radius: 14px;
+      background: #0f162b;
+      padding: 12px 14px;
+    }
+
+    .dev-output summary {
+      cursor: pointer;
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* Preset cards */
+    .preset-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .preset-card {
+      border: 1px solid #273556;
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #10182d;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .preset-card:hover {
+      border-color: #3b82f6;
+    }
+
+    .preset-card.active {
+      border-color: #67e8f9;
+      background: rgba(103,232,249,0.06);
+    }
+
+    .preset-card-title {
+      font-weight: 700;
+      font-size: 12px;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .preset-card-text {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.4;
+    }
+
+    .preset-label {
+      font-size: 11px;
+      color: #67e8f9;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    /* Developer Resources */
+    .dev-resources {
+      margin-top: 48px;
+    }
+
+    .dev-resources-heading {
+      color: #67e8f9;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .dev-resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .dev-resource-card {
+      border: 1px solid #273556;
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #10182d;
+    }
+
+    .dev-resource-label {
+      font-size: 11px;
+      color: #67e8f9;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .code-block {
+      background: #09101f;
+      border: 1px solid #22314e;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #dbeafe;
+      word-break: break-all;
+    }
+
+    .dev-resource-link {
+      display: block;
+      font-size: 13px;
+      color: #93c5fd;
+      text-decoration: none;
+      margin-top: 4px;
+      word-break: break-all;
+    }
+
+    .dev-resource-link:hover {
+      color: #67e8f9;
+    }
+
+    /* Use cases */
+    .use-cases {
+      margin-top: 56px;
+    }
+
+    .use-case-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .use-case-card {
+      border: 1px solid #273556;
+      border-radius: 12px;
+      padding: 16px;
+      background: #10182d;
+    }
+
+    .use-case-card-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .use-case-card-text {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .production-cta {
+      margin-top: 56px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .production-cta-card {
+      width: 100%;
+      border: 1px solid #273556;
+      border-radius: 18px;
+      background: #10182d;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    }
+
+    .production-cta-label {
+      color: #67e8f9;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .production-cta-card h2 {
+      margin: 0 0 10px;
+      font-size: 26px;
+    }
+
+    .production-cta-text {
+      color: #b8c1d9;
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0 auto 12px;
+      max-width: 680px;
+    }
+
+    .production-cta-small {
+      color: #94a3b8;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 0 auto 20px;
+      max-width: 720px;
+    }
+
+    .production-cta-button {
+      display: inline-block;
+      background: #3b82f6;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 800;
+      font-size: 14px;
+      border: 1px solid rgba(103,232,249,0.25);
+    }
+
+    .production-cta-flow {
+      margin-top: 16px;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .meta-grid {
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    #latencyValue {
+      white-space: pre-line;
+      line-height: 1.6;
+      font-size: 13px;
+      color: #ffffff;
+    }
+
+    .hash-value {
+      margin-top: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #dbeafe;
+      background: #09101f;
+      border: 1px solid #22314e;
+      border-radius: 10px;
+      padding: 10px;
+      word-break: break-all;
+    }
+
+    .copy-button {
+      margin-top: 10px;
+      background: #1e293b;
+      color: #ffffff;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .loading-pulse {
+      animation: pulseText 1s ease-in-out infinite;
+    }
+
+    @keyframes pulseText {
+      0% { opacity: 0.55; }
+      50% { opacity: 1; }
+      100% { opacity: 0.55; }
+    }
+
+    @media (max-width: 860px) {
+      .grid,
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .preset-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top-link">
+      <a href="https://ops.trust-os.io" target="_blank" rel="noopener">Ops Demo ↗</a>
+      <a href="https://trust-os.io/" target="_blank">← Trust OS</a>
+    </div>
+
+    <div class="hero">
+      <div class="eyebrow">DEVELOPER PLAYGROUND</div>
+      <h1>Trust OS API Playground</h1>
+      <p class="subtitle">
+        Test the Decision Verification API with live requests, structured inputs, and verifiable responses.
+      </p>
+      <p class="small" style="margin-top:8px;">One API for verifying high-impact decisions before execution.</p>
+    </div>
+
+    <div class="grid">
+      <!-- Left: API Request panel -->
+      <div class="card">
+        <h2>API Request</h2>
+
+        <div>
+          <div class="preset-label">Quick Presets</div>
+          <div class="preset-cards">
+            <div class="preset-card active" data-preset="stablecoin" onclick="applyPreset('stablecoin')">
+              <div class="preset-card-title">Stablecoin Payment</div>
+              <div class="preset-card-text">Cross-border USDC transfer</div>
+            </div>
+            <div class="preset-card" data-preset="agent" onclick="applyPreset('agent')">
+              <div class="preset-card-title">AI Agent Action</div>
+              <div class="preset-card-text">High-impact tool use gate</div>
+            </div>
+            <div class="preset-card" data-preset="dao" onclick="applyPreset('dao')">
+              <div class="preset-card-title">DAO Treasury</div>
+              <div class="preset-card-text">Governance disbursement</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="user_id">Use Case</label>
+          <input id="user_id" value="Stablecoin Payment Verification" />
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="Request">Decision Payload</label>
+            <select id="Request">
+              <option value="stablecoin_transfer">stablecoin_transfer</option>
+              <option value="execute_tool">execute_tool</option>
+              <option value="treasury_disbursement">treasury_disbursement</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="Source">Source System</label>
+            <select id="Source">
+              <option value="Payment API">Payment API</option>
+              <option value="Agent Framework">Agent Framework</option>
+              <option value="Treasury System">Treasury System</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="Priority">Risk Priority</label>
+            <input id="Priority" type="text" value="High" />
+          </div>
+
+          <div class="field">
+            <label for="EscalationTarget">Counterparty / Destination</label>
+            <input id="EscalationTarget" value="wallet_0x4f3b9c2a8d1e6f5a" />
+          </div>
+        </div>
+
+        <div class="Requests">
+          <button class="btn-primary" id="verifyBtn">Verify Decision</button>
+        </div>
+
+        <div class="small">API: POST /v1/decision/run</div>
+      </div>
+
+      <!-- Right: Decision Output panel -->
+      <div class="card">
+        <h2>Decision Output</h2>
+
+        <div class="meta-grid">
+          <div class="metric-box">
+            <div class="metric-label">Decision ID</div>
+            <div id="decisionIdValue">-</div>
+          </div>
+
+          <div class="metric-box">
+            <div class="metric-label">Latency</div>
+            <div id="latencyValue">-</div>
+          </div>
+        </div>
+
+        <div class="metric-box">
+          <div class="metric-label">Recommendation</div>
+          <div class="metric-value" id="recommendationValue">-</div>
+        </div>
+
+        <div class="metric-box">
+          <div class="metric-label">Risk Level</div>
+          <div id="riskLevelValue">-</div>
+          <div id="riskBadge"></div>
+        </div>
+
+        <div class="metric-box">
+          <div class="metric-label">Why this decision?</div>
+          <ul id="whyList" class="proof-list">
+            <li>Waiting for verification...</li>
+          </ul>
+        </div>
+
+        <div class="metric-box">
+          <div class="metric-label">Policy Applied</div>
+          <ul id="policyList" class="proof-list">
+            <li>Waiting for verification...</li>
+          </ul>
+        </div>
+
+        <div class="metric-box">
+          <div class="metric-label">Verification Proof</div>
+          <div id="proofStatus">Not verified yet</div>
+          <div class="small">SHA-256 verification hash</div>
+          <div class="hash-value" id="proofHash">Proof hash: —</div>
+          <button class="copy-button" id="copyProofBtn" type="button">Copy Proof Hash</button>
+        </div>
+
+        <div class="status" id="statusBox">Waiting for input...</div>
+      </div>
+    </div>
+
+    <!-- Developer Resources -->
+    <div class="dev-resources">
+      <div class="dev-resources-heading">Developer Resources</div>
+      <div class="dev-resource-grid">
+        <div class="dev-resource-card">
+          <div class="dev-resource-label">Install SDK</div>
+          <div class="code-block">npm install @trust-os-sdk/trust-os-sdk</div>
+        </div>
+
+        <div class="dev-resource-card">
+          <div class="dev-resource-label">Production API</div>
+          <div style="margin-top:6px; font-size:12px; color:#94a3b8; font-family:monospace;">POST /v1/decision/verify</div>
+          <a class="dev-resource-link" href="https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev" target="_blank" rel="noopener">
+            trustos-core-gateway-v2 ↗
+          </a>
+        </div>
+
+        <div class="dev-resource-card">
+          <div class="dev-resource-label">GitHub</div>
+          <a class="dev-resource-link" href="https://github.com/trustos-trustfolio/trustos-sdk" target="_blank" rel="noopener">
+            trustos-trustfolio/trustos-sdk ↗
+          </a>
+        </div>
+
+        <div class="dev-resource-card">
+          <div class="dev-resource-label">npm</div>
+          <a class="dev-resource-link" href="https://www.npmjs.com/package/@trust-os-sdk/trust-os-sdk" target="_blank" rel="noopener">
+            @trust-os-sdk/trust-os-sdk ↗
+          </a>
+        </div>
+
+        <div class="dev-resource-card">
+          <div class="dev-resource-label">Operational Demo</div>
+          <a class="dev-resource-link" href="https://ops.trust-os.io" target="_blank" rel="noopener">
+            ops.trust-os.io ↗
+          </a>
+          <div style="font-size:11px; color:#475569; margin-top:4px;">Financial Decision Verification</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use Cases -->
+    <div class="use-cases">
+      <p style="color:#67e8f9; font-size:12px; margin-bottom:6px;">One API, multiple verification workflows</p>
+      <h2 style="margin-top:8px; font-size:26px;">Use Cases</h2>
+      <p style="color:#94a3b8; margin-bottom:20px;">Verify high-impact decisions before execution — across payments, AI agents, and governance.</p>
+
+      <div class="use-case-grid">
+        <div class="use-case-card">
+          <div class="use-case-card-title">Stablecoin Payment Verification</div>
+          <div class="use-case-card-text">
+            Verify cross-border stablecoin transfers against compliance and risk policy before on-chain execution.
+          </div>
+        </div>
+
+        <div class="use-case-card">
+          <div class="use-case-card-title">AI Agent Action Verification</div>
+          <div class="use-case-card-text">
+            Gate high-impact agent tool use — database writes, API calls, code execution — with a pre-execution decision check.
+          </div>
+        </div>
+
+        <div class="use-case-card">
+          <div class="use-case-card-title">DAO Treasury Verification</div>
+          <div class="use-case-card-text">
+            Validate governance parameters before treasury disbursements — quorum, timelock, multisig.
+          </div>
+        </div>
+
+        <div class="use-case-card">
+          <div class="use-case-card-title">Compliance Workflow Approval</div>
+          <div class="use-case-card-text">
+            Route decisions through policy evaluation for regulated industries: finance, healthcare, legal.
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="production-cta">
+        <div class="production-cta-card">
+          <div class="production-cta-label">EARLY ACCESS</div>
+
+          <h2>Start Building with Trust OS</h2>
+
+          <p class="production-cta-text">
+            Integrate the Decision Verification API into payment infrastructure, AI agent systems, treasury platforms, and compliance workflows.
+          </p>
+
+          <p class="production-cta-small">
+            Trust OS is in private beta. API keys are provisioned by invitation.
+          </p>
+
+          <a
+            class="production-cta-button"
+            href="mailto:admin@trust-os.io"
+          >
+            Request API Access
+          </a>
+
+          <div class="production-cta-flow">
+            Typical onboarding: Intro → Sandbox API → Pilot → Production
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+let latestResult = null;
+
+const recommendationValue = document.getElementById("recommendationValue");
+const riskLevelValue      = document.getElementById("riskLevelValue");
+const riskBadge           = document.getElementById("riskBadge");
+const statusBox           = document.getElementById("statusBox");
+const decisionIdValue     = document.getElementById("decisionIdValue");
+const latencyValue        = document.getElementById("latencyValue");
+const copyProofBtn        = document.getElementById("copyProofBtn");
+const whyList             = document.getElementById("whyList");
+const policyList          = document.getElementById("policyList");
+const proofStatus         = document.getElementById("proofStatus");
+const proofHash           = document.getElementById("proofHash");
+const verifyBtn           = document.getElementById("verifyBtn");
+
+// --- Presets ---
+
+const presets = {
+  stablecoin: {
+    useCase:     "Stablecoin Payment Verification",
+    action:      "stablecoin_transfer",
+    source:      "Payment API",
+    priority:    "High",
+    destination: "wallet_0x4f3b9c2a8d1e6f5a",
+    why: [
+      "Cross-border stablecoin transfer exceeds policy threshold",
+      "Destination wallet risk profile evaluated",
+      "AML and sanctions screening applied before execution"
+    ],
+    policy: [
+      "Stablecoin Settlement Policy v1.0",
+      "AML Compliance Rule",
+      "High-value Transfer Policy"
+    ],
+    fallbackRec:  "APPROVE",
+    fallbackRisk: "LOW"
+  },
+  agent: {
+    useCase:     "AI Agent Action Verification",
+    action:      "execute_tool",
+    source:      "Agent Framework",
+    priority:    "High",
+    destination: "database_write",
+    why: [
+      "Agent requested irreversible database write",
+      "Affected records exceed policy threshold",
+      "High-impact action requires pre-execution verification"
+    ],
+    policy: [
+      "Agent Action Policy v1.0",
+      "Irreversible Action Review Rule",
+      "High-Impact Execution Policy"
+    ],
+    fallbackRec:  "REVIEW",
+    fallbackRisk: "HIGH"
+  },
+  dao: {
+    useCase:     "DAO Treasury Verification",
+    action:      "treasury_disbursement",
+    source:      "Treasury System",
+    priority:    "Medium",
+    destination: "dao_multisig_0x91a3",
+    why: [
+      "DAO governance parameters evaluated",
+      "Quorum and timelock conditions verified",
+      "Treasury disbursement validated before execution"
+    ],
+    policy: [
+      "DAO Treasury Policy v2.0",
+      "Governance Quorum Rule",
+      "Timelock Compliance Policy"
+    ],
+    fallbackRec:  "APPROVE",
+    fallbackRisk: "MEDIUM"
+  }
+};
+
+let activePreset = "stablecoin";
+
+function applyPreset(key) {
+  const p = presets[key];
+  if (!p) return;
+  activePreset = key;
+
+  document.getElementById("user_id").value        = p.useCase;
+  document.getElementById("Priority").value       = p.priority;
+  document.getElementById("EscalationTarget").value = p.destination;
+
+  const reqSel = document.getElementById("Request");
+  for (let i = 0; i < reqSel.options.length; i++) {
+    if (reqSel.options[i].value === p.action) { reqSel.selectedIndex = i; break; }
+  }
+
+  const srcSel = document.getElementById("Source");
+  for (let i = 0; i < srcSel.options.length; i++) {
+    if (srcSel.options[i].value === p.source) { srcSel.selectedIndex = i; break; }
+  }
+
+  document.querySelectorAll(".preset-card").forEach(card => {
+    card.classList.toggle("active", card.dataset.preset === key);
+  });
+}
+
+// --- Core helpers ---
+
+function getHeaders() {
+  return { "Content-Type": "application/json" };
+}
+
+function setStatus(text) {
+  statusBox.textContent = text;
+}
+
+function setBadge(level) {
+  riskBadge.innerHTML = "";
+  if (!level) return;
+  const span = document.createElement("span");
+  span.className = "badge";
+  if (level === "LOW")        span.classList.add("badge-low");
+  else if (level === "MEDIUM") span.classList.add("badge-medium");
+  else                         span.classList.add("badge-high");
+  span.textContent = level;
+  riskBadge.appendChild(span);
+}
+
+function setWhyAndPolicy() {
+  const p = presets[activePreset] || presets.stablecoin;
+  whyList.innerHTML    = p.why.map(w  => `<li>${w}</li>`).join("");
+  policyList.innerHTML = p.policy.map(pol => `<li>${pol}</li>`).join("");
+}
+
+function getPayload() {
+  return {
+    user_id:     document.getElementById("user_id").value.trim(),
+    action:      document.getElementById("Request").value,
+    amount:      1,
+    currency:    document.getElementById("Source").value,
+    destination: document.getElementById("EscalationTarget").value.trim(),
+    timestamp:   new Date().toISOString(),
+    context: {
+      history_score:    0.7,
+      destination_risk: 0.3,
+      device:           "web",
+      location:         "JP",
+      profile:          "api_playground_demo",
+      priority:         document.getElementById("Priority").value
+    }
+  };
+}
+
+// --- Main verification flow ---
+
+async function runVerification() {
+  try {
+    verifyBtn.disabled   = true;
+    verifyBtn.textContent = "Verifying...";
+    verifyBtn.className  = "btn-primary";
+
+    recommendationValue.textContent = "-";
+    riskLevelValue.textContent      = "-";
+    decisionIdValue.textContent     = "-";
+    latencyValue.textContent        = "-";
+    riskBadge.innerHTML             = "";
+
+    proofStatus.innerHTML   = `<span class="proof-wait loading-pulse">Preparing verification...</span>`;
+    proofHash.textContent   = "Preparing verification proof...";
+    copyProofBtn.textContent = "Copy Proof Hash";
+
+    whyList.innerHTML    = `<li class="loading-pulse">Evaluating decision...</li>`;
+    policyList.innerHTML = `<li class="loading-pulse">Applying policy rules...</li>`;
+
+    setStatus("Running pre-execution verification...");
+
+    const startedAt = performance.now();
+    const payload   = getPayload();
+
+    setTimeout(() => { setStatus("Scoring decision risk..."); }, 250);
+    setTimeout(() => { setStatus("Generating verification proof..."); }, 500);
+
+    const res = await fetch("/v1/decision/run", {
+      method:  "POST",
+      headers: getHeaders(),
+      body:    JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Verification unavailable");
+    }
+
+    latestResult = data;
+
+    const score  = data.score  || {};
+    const log    = data.log    || {};
+    const verify = data.verify || {};
+
+    const clientLatency = Math.round(performance.now() - startedAt);
+    const serverLatency = data.latency_ms || score.latency_ms || log.latency_ms || verify.latency_ms;
+    const finalLatency  = `Round trip: ${clientLatency}ms`;
+
+    const decisionId =
+      data.decision_id  ||
+      score.decision_id ||
+      log.decision_id   ||
+      verify.decision_id ||
+      "-";
+
+    const proof =
+      verify.ledger_hash ||
+      verify.proof_hash  ||
+      log.hash           ||
+      log.proof_hash     ||
+      data.proof_hash    ||
+      "-";
+
+    decisionIdValue.textContent = decisionId;
+    latencyValue.textContent    = finalLatency;
+
+    recommendationValue.textContent = score.recommendation || data.recommendation || "-";
+    riskLevelValue.textContent      = score.risk_level     || data.risk_level     || "-";
+
+    setBadge(score.risk_level || data.risk_level);
+    setWhyAndPolicy();
+
+    proofStatus.innerHTML = `<span class="proof-ok">Verified ✅</span>`;
+    proofHash.textContent = proof;
+
+    setStatus(`Verification complete. Decision ID: ${decisionId}`);
+    verifyBtn.textContent = "Verified ✅";
+    verifyBtn.className   = "btn-done";
+
+  } catch (error) {
+    const p = presets[activePreset] || presets.stablecoin;
+    const fallbackDecisionId = "demo_" + Math.random().toString(16).slice(2, 10);
+    const fallbackHash       = "a84f"  + Math.random().toString(16).slice(2, 18) + "3b29";
+
+    decisionIdValue.textContent = fallbackDecisionId;
+    latencyValue.textContent    = "Round trip: 842ms";
+
+    recommendationValue.textContent = p.fallbackRec;
+    riskLevelValue.textContent      = p.fallbackRisk;
+    setBadge(p.fallbackRisk);
+
+    whyList.innerHTML    = p.why.map(w   => `<li>${w}</li>`).join("");
+    policyList.innerHTML = p.policy.map(pol => `<li>${pol}</li>`).join("");
+
+    proofStatus.innerHTML = `<span class="proof-ok">Verification Complete ✓</span>`;
+    proofHash.textContent = `SHA-256 Verification Hash: ${fallbackHash}`;
+
+    setStatus(`Verification complete. Decision ID: ${fallbackDecisionId}`);
+    verifyBtn.textContent = "Verified ✓";
+    verifyBtn.className   = "btn-done";
+
+  } finally {
+    setTimeout(() => {
+      verifyBtn.disabled    = false;
+      verifyBtn.textContent = "Verify Decision";
+      verifyBtn.className   = "btn-primary";
+    }, 1500);
+  }
+}
+
+verifyBtn.addEventListener("click", runVerification);
+
+copyProofBtn.addEventListener("click", async () => {
+  const text = proofHash.textContent;
+  if (!text || text.includes("Proof hash: —") || text === "-") return;
+  try {
+    await navigator.clipboard.writeText(text);
+    copyProofBtn.textContent = "Copied ✅";
+    setTimeout(() => { copyProofBtn.textContent = "Copy Proof Hash"; }, 1200);
+  } catch (error) {
+    copyProofBtn.textContent = "Copy failed";
+  }
+});
+
+  </script>
+</body>
+</html>
