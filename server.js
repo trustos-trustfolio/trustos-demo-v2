@@ -27,8 +27,8 @@ app.post("/v1/decision/run", async (req, res) => {
 
   try {
     if (!API_URL || !API_KEY) {
-      return res.status(500).json({
-        error: "Missing TRUSTOS_API_URL or TRUSTOS_API_KEY"
+      return res.status(503).json({
+        error: "Service temporarily unavailable"
       });
     }
 
@@ -49,9 +49,8 @@ app.post("/v1/decision/run", async (req, res) => {
     try {
       data = JSON.parse(text);
     } catch {
-      return res.status(500).json({
-        error: "Core API did not return JSON",
-        raw: text.slice(0, 300)
+      return res.status(502).json({
+        error: "Upstream service error"
       });
     }
 
@@ -71,9 +70,9 @@ app.post("/v1/decision/run", async (req, res) => {
       proxy_latency_ms: Date.now() - startedAt
     });
 
-  } catch (e) {
+  } catch {
     return res.status(500).json({
-      error: e.message
+      error: "Internal server error"
     });
   }
 });

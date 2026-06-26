@@ -158,6 +158,21 @@ Live responses are returned when an API key is configured in the server environm
 
 ---
 
+## Local Setup
+
+```sh
+npm install
+cp .env.sample .env
+# Edit .env and set your TRUSTOS_API_KEY
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+**No API key?** The playground works without one. Without a configured key, all responses return as Sandbox responses with the same JSON structure as live API responses. You can build and test your integration against sandbox output before requesting access.
+
+---
+
 ## Stack
 
 - Node.js + Express proxy (`server.js`)
