@@ -55,7 +55,9 @@ app.post("/v1/decision/run", async (req, res) => {
     }
 
     if (!apiRes.ok) {
-      return res.status(apiRes.status).json(data);
+      return res.status(502).json({
+        error: "Verification service unavailable"
+      });
     }
 
     return res.json({
