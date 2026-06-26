@@ -85,6 +85,81 @@
     .dev-copy p { margin: 0; }
     .dev-copy p + p { margin-top: 6px; }
 
+    /* ── Hero developer links ── */
+    .hero-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: 7px;
+      border: 1px solid #273556;
+      background: #10182d;
+      color: #93c5fd;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+
+    .hero-link:hover { border-color: #3b82f6; background: rgba(59,130,246,0.08); color: #67e8f9; }
+
+    /* ── Flow strip ── */
+    .flow-strip {
+      display: flex;
+      align-items: center;
+      margin-top: 14px;
+      padding: 11px 16px;
+      background: #0d1525;
+      border: 1px solid #1a2540;
+      border-radius: 12px;
+      overflow-x: auto;
+      gap: 0;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .flow-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #1e3a5f;
+      border: 1px solid #3b82f6;
+      color: #93c5fd;
+      font-size: 10px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .flow-label {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    .flow-arrow {
+      color: #1e3a5f;
+      font-size: 14px;
+      margin: 0 10px;
+      flex-shrink: 0;
+    }
+
     /* ── API Status Bar ── */
     .api-status-bar {
       display: flex;
@@ -94,7 +169,7 @@
       background: #0e1628;
       border: 1px solid #1e2d4a;
       border-radius: 10px;
-      margin-top: 16px;
+      margin-top: 12px;
       font-size: 12px;
       flex-wrap: wrap;
     }
@@ -119,38 +194,17 @@
       box-shadow: 0 0 6px rgba(74,222,128,0.5);
     }
 
-    .api-status-dot.dot-sandbox {
-      background: #fbbf24;
-    }
+    .api-status-dot.dot-sandbox { background: #fbbf24; }
 
     .api-status-dot.dot-connecting {
       background: #93c5fd;
       animation: dotBlink 0.8s ease-in-out infinite;
     }
 
-    .api-status-key {
-      color: #475569;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .api-status-val {
-      color: #cbd5e1;
-      font-weight: 700;
-      font-size: 12px;
-      transition: color 0.3s;
-    }
-
-    .api-mono {
-      font-family: monospace;
-      color: #93c5fd;
-      font-size: 11.5px;
-    }
-
-    .api-status-sep {
-      color: #1e3a5f;
-      font-size: 14px;
-    }
+    .api-status-key  { color: #475569; font-size: 11px; font-weight: 600; }
+    .api-status-val  { color: #cbd5e1; font-weight: 700; font-size: 12px; transition: color 0.3s; }
+    .api-mono        { font-family: monospace; color: #93c5fd; font-size: 11.5px; }
+    .api-status-sep  { color: #1e3a5f; font-size: 14px; }
 
     @keyframes dotBlink {
       0%,100% { opacity: 0.4; }
@@ -174,14 +228,9 @@
       box-shadow: 0 8px 30px rgba(0,0,0,0.25);
     }
 
-    .card h2 {
-      margin-top: 0;
-      font-size: 20px;
-    }
+    .card h2 { margin-top: 0; font-size: 20px; }
 
-    .field {
-      margin-bottom: 14px;
-    }
+    .field { margin-bottom: 14px; }
 
     .field label {
       display: block;
@@ -202,18 +251,9 @@
       outline: none;
     }
 
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-    .Requests {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-    }
+    .Requests { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
 
     button {
       border: 0;
@@ -225,10 +265,10 @@
       transition: opacity 0.15s;
     }
 
-    .btn-primary  { background: #3b82f6; color: #fff; }
-    .btn-sending  { background: #1d4ed8; color: #fff; }
-    .btn-done     { background: #16a34a; color: #fff; }
-    .btn-sandbox  { background: #b45309; color: #fff; }
+    .btn-primary { background: #3b82f6; color: #fff; }
+    .btn-sending { background: #1d4ed8; color: #fff; }
+    .btn-done    { background: #16a34a; color: #fff; }
+    .btn-sandbox { background: #b45309; color: #fff; }
 
     /* ── Preset Cards ── */
     .preset-cards {
@@ -247,11 +287,11 @@
       transition: border-color 0.15s, background 0.15s;
     }
 
-    .preset-card:hover        { border-color: #3b82f6; }
-    .preset-card.active       { border-color: #67e8f9; background: rgba(103,232,249,0.06); }
-    .preset-card-title        { font-weight: 700; font-size: 12px; color: #fff; margin-bottom: 3px; }
-    .preset-card-text         { font-size: 11px; color: #94a3b8; line-height: 1.4; }
-    .preset-label             { font-size: 11px; color: #67e8f9; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+    .preset-card:hover  { border-color: #3b82f6; }
+    .preset-card.active { border-color: #67e8f9; background: rgba(103,232,249,0.06); }
+    .preset-card-title  { font-weight: 700; font-size: 12px; color: #fff; margin-bottom: 3px; }
+    .preset-card-text   { font-size: 11px; color: #94a3b8; line-height: 1.4; }
+    .preset-label       { font-size: 11px; color: #67e8f9; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
 
     /* ── Payload Preview ── */
     .payload-preview {
@@ -270,19 +310,8 @@
       border-bottom: 1px solid #1e2d4a;
     }
 
-    .payload-preview-label {
-      font-size: 10px;
-      color: #67e8f9;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .payload-preview-method {
-      font-size: 10px;
-      color: #475569;
-      font-family: monospace;
-    }
+    .payload-preview-label  { font-size: 10px; color: #67e8f9; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .payload-preview-method { font-size: 10px; color: #475569; font-family: monospace; }
 
     .payload-pre {
       margin: 0;
@@ -295,7 +324,6 @@
       overflow-x: auto;
       line-height: 1.55;
       border: none;
-      min-height: 0;
     }
 
     /* ── Decision Output ── */
@@ -307,23 +335,15 @@
       margin-bottom: 12px;
     }
 
-    .metric-label  { font-size: 12px; color: #94a3b8; margin-bottom: 6px; }
-    .metric-value  { font-size: 26px; font-weight: 800; }
+    .metric-label { font-size: 12px; color: #94a3b8; margin-bottom: 6px; }
+    .metric-value { font-size: 26px; font-weight: 800; }
 
     .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; margin-top: 8px; }
     .badge-low    { background: rgba(34,197,94,0.15);  color: #4ade80; }
     .badge-medium { background: rgba(245,158,11,0.15); color: #fbbf24; }
     .badge-high   { background: rgba(239,68,68,0.15);  color: #f87171; }
 
-    .response-badge {
-      display: inline-block;
-      padding: 3px 9px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 700;
-      vertical-align: middle;
-      margin-left: 8px;
-    }
+    .response-badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; vertical-align: middle; margin-left: 8px; }
     .response-badge-live    { background: rgba(34,197,94,0.15);  color: #4ade80; }
     .response-badge-sandbox { background: rgba(245,158,11,0.15); color: #fbbf24; }
 
@@ -407,12 +427,7 @@
       padding-bottom: 2px;
     }
 
-    .lc-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 88px;
-    }
+    .lc-step { display: flex; flex-direction: column; align-items: center; min-width: 88px; }
 
     .lc-dot {
       width: 11px;
@@ -435,15 +450,7 @@
     .lc-dot.lc-done    { border-color: #4ade80; background: #4ade80; }
     .lc-dot.lc-sandbox { border-color: #fbbf24; background: #fbbf24; }
 
-    .lc-lbl {
-      font-size: 10px;
-      color: #334155;
-      text-align: center;
-      line-height: 1.4;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-
+    .lc-lbl { font-size: 10px; color: #334155; text-align: center; line-height: 1.4; font-weight: 600; transition: color 0.3s; }
     .lc-lbl.lc-active  { color: #93c5fd; }
     .lc-lbl.lc-done    { color: #4ade80; }
     .lc-lbl.lc-sandbox { color: #fbbf24; }
@@ -466,9 +473,40 @@
       50%      { opacity: 1;   box-shadow: 0 0 10px rgba(59,130,246,0.8); }
     }
 
+    /* ── Response Summary Strip ── */
+    .response-summary {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: #1e2d4a;
+      border: 1px solid #1e2d4a;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .rs-item { background: #0d1525; padding: 10px 14px; text-align: center; }
+
+    .rs-label {
+      font-size: 10px;
+      color: #475569;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 5px;
+    }
+
+    .rs-value { font-size: 13px; font-weight: 700; color: #cbd5e1; font-family: monospace; word-break: break-all; }
+    .rs-approve { color: #4ade80; }
+    .rs-review  { color: #fbbf24; }
+    .rs-deny    { color: #f87171; }
+    .rs-low     { color: #4ade80; }
+    .rs-medium  { color: #fbbf24; }
+    .rs-high    { color: #f87171; }
+
     /* ── Raw JSON Response Card ── */
     .json-response-card {
-      margin-top: 20px;
+      margin-top: 12px;
       background: #121a30;
       border: 1px solid #24304f;
       border-radius: 14px;
@@ -485,24 +523,29 @@
       border-bottom: 1px solid #1e2d4a;
     }
 
-    .json-response-title {
-      font-size: 11px;
-      font-weight: 700;
-      color: #67e8f9;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
+    .json-response-title { font-size: 11px; font-weight: 700; color: #67e8f9; text-transform: uppercase; letter-spacing: 0.08em; }
 
-    .json-response-badge {
-      font-size: 11px;
-      padding: 2px 9px;
-      border-radius: 999px;
-      font-weight: 700;
-    }
+    .json-header-right { display: flex; align-items: center; gap: 8px; }
 
+    .json-response-badge { font-size: 11px; padding: 2px 9px; border-radius: 999px; font-weight: 700; }
     .json-response-badge.mode-idle    { background: rgba(100,116,139,0.12); color: #64748b; }
     .json-response-badge.mode-live    { background: rgba(34,197,94,0.15);   color: #4ade80; }
     .json-response-badge.mode-sandbox { background: rgba(245,158,11,0.15);  color: #fbbf24; }
+
+    .copy-json-btn {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 7px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .copy-json-btn:hover { background: #273556; color: #fff; }
+    .copy-json-btn.copied { background: rgba(34,197,94,0.12); color: #4ade80; border-color: rgba(34,197,94,0.3); }
 
     .json-response-pre {
       margin: 0;
@@ -515,7 +558,6 @@
       overflow-x: auto;
       line-height: 1.6;
       border: none;
-      min-height: 0;
     }
 
     /* ── Developer Resources ── */
@@ -530,12 +572,7 @@
       margin-bottom: 6px;
     }
 
-    .dev-resources-desc {
-      color: #475569;
-      font-size: 12px;
-      margin-bottom: 14px;
-      line-height: 1.5;
-    }
+    .dev-resources-desc { color: #475569; font-size: 12px; margin-bottom: 14px; line-height: 1.5; }
 
     .dev-resource-grid {
       display: grid;
@@ -543,20 +580,7 @@
       gap: 12px;
     }
 
-    .dev-resource-card {
-      border: 1px solid #273556;
-      border-radius: 12px;
-      padding: 14px 16px;
-      background: #10182d;
-    }
-
-    .dev-resource-card-wide {
-      border: 1px solid #273556;
-      border-radius: 12px;
-      padding: 14px 16px;
-      background: #10182d;
-      grid-column: 1 / -1;
-    }
+    .dev-resource-card { border: 1px solid #273556; border-radius: 12px; padding: 14px 16px; background: #10182d; }
 
     .dev-resource-label {
       font-size: 10px;
@@ -578,45 +602,82 @@
       word-break: break-all;
     }
 
-    .code-block-multi {
-      background: #09101f;
-      border: 1px solid #22314e;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-family: monospace;
-      font-size: 11.5px;
-      color: #dbeafe;
-      white-space: pre;
-      overflow-x: auto;
-      line-height: 1.6;
-      margin-top: 6px;
+    .dev-resource-link { display: block; font-size: 13px; color: #93c5fd; text-decoration: none; margin-top: 4px; word-break: break-all; }
+    .dev-resource-link:hover { color: #67e8f9; }
+
+    /* ── SDK Tabs ── */
+    .sdk-section {
+      margin-top: 20px;
+      border: 1px solid #273556;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #10182d;
     }
 
-    .dev-resource-link {
-      display: block;
-      font-size: 13px;
-      color: #93c5fd;
-      text-decoration: none;
-      margin-top: 4px;
-      word-break: break-all;
+    .sdk-section-header {
+      padding: 12px 16px 0;
+      background: #0e1628;
     }
-    .dev-resource-link:hover { color: #67e8f9; }
+
+    .sdk-section-label {
+      font-size: 10px;
+      color: #67e8f9;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .sdk-tab-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid #1e2d4a;
+      overflow-x: auto;
+    }
+
+    .sdk-tab-btn {
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #475569;
+      background: transparent;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      border-radius: 0;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .sdk-tab-btn:hover { color: #94a3b8; }
+    .sdk-tab-btn.active { color: #67e8f9; border-bottom-color: #67e8f9; }
+
+    .sdk-tab-content { display: none; }
+    .sdk-tab-content.active { display: block; }
+
+    .sdk-code {
+      margin: 0;
+      padding: 14px 16px;
+      background: #09101f;
+      color: #dbeafe;
+      font-family: monospace;
+      font-size: 12px;
+      white-space: pre;
+      overflow-x: auto;
+      line-height: 1.65;
+    }
 
     /* ── Use Cases ── */
     .use-cases { margin-top: 52px; }
 
-    .use-case-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
+    .use-case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 
-    .use-case-card         { border: 1px solid #273556; border-radius: 12px; padding: 16px; background: #10182d; }
-    .use-case-card-title   { font-weight: 700; margin-bottom: 8px; color: #fff; }
-    .use-case-card-text    { font-size: 13px; color: #94a3b8; line-height: 1.5; }
+    .use-case-card       { border: 1px solid #273556; border-radius: 12px; padding: 16px; background: #10182d; }
+    .use-case-card-title { font-weight: 700; margin-bottom: 8px; color: #fff; }
+    .use-case-card-text  { font-size: 13px; color: #94a3b8; line-height: 1.5; }
 
     /* ── CTA ── */
-    .production-cta      { margin-top: 52px; }
+    .production-cta { margin-top: 52px; }
 
     .production-cta-card {
       width: 100%;
@@ -628,18 +689,10 @@
       box-shadow: 0 8px 30px rgba(0,0,0,0.25);
     }
 
-    .production-cta-label {
-      color: #67e8f9;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .production-cta-card h2  { margin: 0 0 10px; font-size: 26px; }
-    .production-cta-text     { color: #b8c1d9; font-size: 15px; line-height: 1.6; margin: 0 auto 12px; max-width: 680px; }
-    .production-cta-small    { color: #94a3b8; font-size: 13px; line-height: 1.6; margin: 0 auto 20px; max-width: 720px; }
+    .production-cta-label { color: #67e8f9; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+    .production-cta-card h2 { margin: 0 0 10px; font-size: 26px; }
+    .production-cta-text  { color: #b8c1d9; font-size: 15px; line-height: 1.6; margin: 0 auto 12px; max-width: 680px; }
+    .production-cta-small { color: #94a3b8; font-size: 13px; line-height: 1.6; margin: 0 auto 20px; max-width: 720px; }
 
     .production-cta-button {
       display: inline-block;
@@ -670,6 +723,7 @@
       .preset-cards { grid-template-columns: 1fr; }
       .api-status-bar { gap: 8px; }
       .api-status-sep { display: none; }
+      .response-summary { grid-template-columns: repeat(3, 1fr); }
     }
   </style>
 </head>
@@ -694,8 +748,29 @@
 
     <!-- Developer copy -->
     <div class="dev-copy">
-      <p>Use this playground to understand the request and response shape before integrating the SDK.</p>
-      <p>Live API responses are shown when credentials are configured. Sandbox responses preserve the same response structure for integration planning.</p>
+      <p>Use this playground to inspect the request and response shape before integrating Trust OS into your application.</p>
+      <p>Live responses are shown when credentials are configured. Sandbox responses preserve the same structure for integration planning.</p>
+    </div>
+
+    <!-- Hero developer links -->
+    <div class="hero-links">
+      <a class="hero-link" href="https://github.com/trustos-trustfolio/trustos-sdk" target="_blank" rel="noopener">&#9733; GitHub</a>
+      <a class="hero-link" href="https://www.npmjs.com/package/@trust-os-sdk/trust-os-sdk" target="_blank" rel="noopener">&#128230; npm</a>
+      <a class="hero-link" href="https://trust-os.io" target="_blank" rel="noopener">&#128214; Docs</a>
+      <a class="hero-link" href="https://ops.trust-os.io" target="_blank" rel="noopener">&#129514; Ops Demo</a>
+    </div>
+
+    <!-- Flow strip -->
+    <div class="flow-strip">
+      <div class="flow-step"><span class="flow-num">1</span><span class="flow-label">Prepare Request</span></div>
+      <span class="flow-arrow">&#8594;</span>
+      <div class="flow-step"><span class="flow-num">2</span><span class="flow-label">Send to Trust OS</span></div>
+      <span class="flow-arrow">&#8594;</span>
+      <div class="flow-step"><span class="flow-num">3</span><span class="flow-label">Verify Decision</span></div>
+      <span class="flow-arrow">&#8594;</span>
+      <div class="flow-step"><span class="flow-num">4</span><span class="flow-label">Receive JSON Response</span></div>
+      <span class="flow-arrow">&#8594;</span>
+      <div class="flow-step"><span class="flow-num">5</span><span class="flow-label">Copy / Integrate</span></div>
     </div>
 
     <!-- API Status Bar -->
@@ -882,11 +957,38 @@
       </div>
     </div>
 
+    <!-- Response Summary Strip -->
+    <div class="response-summary">
+      <div class="rs-item">
+        <div class="rs-label">Decision</div>
+        <div class="rs-value" id="rsDecision">&#8212;</div>
+      </div>
+      <div class="rs-item">
+        <div class="rs-label">Risk Level</div>
+        <div class="rs-value" id="rsRisk">&#8212;</div>
+      </div>
+      <div class="rs-item">
+        <div class="rs-label">Risk Score</div>
+        <div class="rs-value" id="rsScore">&#8212;</div>
+      </div>
+      <div class="rs-item">
+        <div class="rs-label">Latency</div>
+        <div class="rs-value" id="rsLatency">&#8212;</div>
+      </div>
+      <div class="rs-item">
+        <div class="rs-label">Proof Hash</div>
+        <div class="rs-value" id="rsHash" style="font-size:11px;">&#8212;</div>
+      </div>
+    </div>
+
     <!-- Raw JSON Response -->
     <div class="json-response-card">
       <div class="json-response-header">
         <span class="json-response-title">Raw JSON Response</span>
-        <span class="json-response-badge mode-idle" id="jsonResponseBadge">Awaiting request</span>
+        <div class="json-header-right">
+          <span class="json-response-badge mode-idle" id="jsonResponseBadge">Awaiting request</span>
+          <button class="copy-json-btn" id="copyJsonBtn" type="button">Copy JSON</button>
+        </div>
       </div>
       <pre class="json-response-pre" id="jsonResponsePre">{
   "decision_id": "&#8212;",
@@ -941,22 +1043,22 @@
           <div style="font-size:11px; color:#475569; margin-top:4px;">Financial Decision Verification</div>
         </div>
 
-        <div class="dev-resource-card-wide">
-          <div class="dev-resource-label">curl Example</div>
-<div class="code-block-multi">curl -X POST https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify \
-  -H "Content-Type: application/json" \
-  -H "x-api-key: YOUR_API_KEY" \
-  -d '{
-    "action": "stablecoin_transfer",
-    "amount": 50000,
-    "currency": "USDC",
-    "destination": "wallet_0x4f3b9c2a8d1e6f5a"
-  }'</div>
+      </div>
+
+      <!-- SDK / REST Tabs -->
+      <div class="sdk-section">
+        <div class="sdk-section-header">
+          <div class="sdk-section-label">Code Examples</div>
+          <div class="sdk-tab-nav">
+            <button class="sdk-tab-btn active" data-tab="js">JavaScript</button>
+            <button class="sdk-tab-btn" data-tab="py">Python</button>
+            <button class="sdk-tab-btn" data-tab="go">Go</button>
+            <button class="sdk-tab-btn" data-tab="rest">REST</button>
+            <button class="sdk-tab-btn" data-tab="curl">Curl</button>
+          </div>
         </div>
 
-        <div class="dev-resource-card-wide">
-          <div class="dev-resource-label">SDK Example</div>
-<div class="code-block-multi">const { TrustOSClient } = require("@trust-os-sdk/trust-os-sdk");
+        <div class="sdk-tab-content active" data-tab="js"><pre class="sdk-code">const { TrustOSClient } = require("@trust-os-sdk/trust-os-sdk");
 
 const client = new TrustOSClient({
   apiKey: process.env.TRUST_OS_API_KEY
@@ -967,8 +1069,80 @@ const result = await client.verifyDecision({
   amount: 50000,
   currency: "USDC",
   destination: "wallet_abc"
-});</div>
-        </div>
+});</pre></div>
+
+        <div class="sdk-tab-content" data-tab="py"><pre class="sdk-code">import requests
+import os
+
+response = requests.post(
+    "https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify",
+    headers={
+        "Content-Type": "application/json",
+        "x-api-key": os.environ["TRUST_OS_API_KEY"],
+    },
+    json={
+        "action": "stablecoin_transfer",
+        "amount": 50000,
+        "currency": "USDC",
+        "destination": "wallet_abc",
+    },
+)
+
+print(response.json())</pre></div>
+
+        <div class="sdk-tab-content" data-tab="go"><pre class="sdk-code">package main
+
+import (
+  "bytes"
+  "fmt"
+  "net/http"
+  "os"
+)
+
+func main() {
+  body := []byte(`{
+    "action": "stablecoin_transfer",
+    "amount": 50000,
+    "currency": "USDC",
+    "destination": "wallet_abc"
+  }`)
+
+  req, _ := http.NewRequest(
+    "POST",
+    "https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify",
+    bytes.NewBuffer(body),
+  )
+
+  req.Header.Set("Content-Type", "application/json")
+  req.Header.Set("x-api-key", os.Getenv("TRUST_OS_API_KEY"))
+
+  res, _ := http.DefaultClient.Do(req)
+  defer res.Body.Close()
+
+  fmt.Println(res.Status)
+}</pre></div>
+
+        <div class="sdk-tab-content" data-tab="rest"><pre class="sdk-code">POST /v1/decision/verify
+Host: trustos-core-gateway-v2-7jm9owrs.an.gateway.dev
+Content-Type: application/json
+x-api-key: YOUR_API_KEY
+
+{
+  "action": "stablecoin_transfer",
+  "amount": 50000,
+  "currency": "USDC",
+  "destination": "wallet_abc"
+}</pre></div>
+
+        <div class="sdk-tab-content" data-tab="curl"><pre class="sdk-code">curl -X POST https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: YOUR_API_KEY" \
+  -d '{
+    "action": "stablecoin_transfer",
+    "amount": 50000,
+    "currency": "USDC",
+    "destination": "wallet_abc"
+  }'</pre></div>
 
       </div>
     </div>
@@ -1044,6 +1218,13 @@ const payloadPre          = document.getElementById("payloadPre");
 const jsonResponsePre     = document.getElementById("jsonResponsePre");
 const jsonResponseBadge   = document.getElementById("jsonResponseBadge");
 const lc5Label            = document.getElementById("lc5Label");
+const copyJsonBtn         = document.getElementById("copyJsonBtn");
+
+const rsDecision = document.getElementById("rsDecision");
+const rsRisk     = document.getElementById("rsRisk");
+const rsScore    = document.getElementById("rsScore");
+const rsLatency  = document.getElementById("rsLatency");
+const rsHash     = document.getElementById("rsHash");
 
 // ── Presets ───────────────────────────────────────────────────
 
@@ -1064,9 +1245,9 @@ const presets = {
       "AML Compliance Rule",
       "High-value Transfer Policy"
     ],
-    fallbackRec:   "APPROVE",
-    fallbackRisk:  "LOW",
-    fallbackScore: 0.18,
+    fallbackRec:    "APPROVE",
+    fallbackRisk:   "LOW",
+    fallbackScore:  0.18,
     fallbackPolicy: "Stablecoin Settlement Policy v1.0"
   },
   agent: {
@@ -1085,9 +1266,9 @@ const presets = {
       "Irreversible Action Review Rule",
       "High-Impact Execution Policy"
     ],
-    fallbackRec:   "REVIEW",
-    fallbackRisk:  "HIGH",
-    fallbackScore: 0.72,
+    fallbackRec:    "REVIEW",
+    fallbackRisk:   "HIGH",
+    fallbackScore:  0.72,
     fallbackPolicy: "Agent Action Policy v1.0"
   },
   dao: {
@@ -1106,9 +1287,9 @@ const presets = {
       "Governance Quorum Rule",
       "Timelock Compliance Policy"
     ],
-    fallbackRec:   "APPROVE",
-    fallbackRisk:  "MEDIUM",
-    fallbackScore: 0.41,
+    fallbackRec:    "APPROVE",
+    fallbackRisk:   "MEDIUM",
+    fallbackScore:  0.41,
     fallbackPolicy: "DAO Treasury Policy v2.0"
   }
 };
@@ -1147,19 +1328,19 @@ function setApiMode(mode) {
   statusDot.className = "api-status-dot";
   if (mode === "live") {
     statusDot.classList.add("dot-live");
-    apiModeVal.textContent  = "Live API";
-    apiModeVal.style.color  = "#4ade80";
+    apiModeVal.textContent = "Live API";
+    apiModeVal.style.color = "#4ade80";
   } else if (mode === "sandbox") {
     statusDot.classList.add("dot-sandbox");
-    apiModeVal.textContent  = "Sandbox Preview";
-    apiModeVal.style.color  = "#fbbf24";
+    apiModeVal.textContent = "Sandbox Preview";
+    apiModeVal.style.color = "#fbbf24";
   } else if (mode === "connecting") {
     statusDot.classList.add("dot-connecting");
-    apiModeVal.textContent  = "Connecting...";
-    apiModeVal.style.color  = "#93c5fd";
+    apiModeVal.textContent = "Connecting...";
+    apiModeVal.style.color = "#93c5fd";
   } else {
-    apiModeVal.textContent  = "Ready";
-    apiModeVal.style.color  = "#cbd5e1";
+    apiModeVal.textContent = "Ready";
+    apiModeVal.style.color = "#cbd5e1";
   }
 }
 
@@ -1207,20 +1388,14 @@ function setLifecycle(upTo, finalMode) {
 // ── Payload Preview ───────────────────────────────────────────
 
 function updatePayloadPreview() {
-  const action   = document.getElementById("Request").value;
-  const source   = document.getElementById("Source").value;
-  const dest     = document.getElementById("EscalationTarget").value.trim();
-  const priority = document.getElementById("Priority").value;
-
   const obj = {
-    action:      action,
+    action:      document.getElementById("Request").value,
     amount:      50000,
     currency:    "USDC",
-    destination: dest,
-    source:      source,
-    priority:    priority
+    destination: document.getElementById("EscalationTarget").value.trim(),
+    source:      document.getElementById("Source").value,
+    priority:    document.getElementById("Priority").value
   };
-
   payloadPre.textContent = JSON.stringify(obj, null, 2);
 }
 
@@ -1229,9 +1404,34 @@ function updatePayloadPreview() {
 function setJsonResponse(obj, mode) {
   jsonResponsePre.textContent = JSON.stringify(obj, null, 2);
   jsonResponseBadge.className = `json-response-badge mode-${mode}`;
-  if (mode === "live")    jsonResponseBadge.textContent = "Live response";
+  if (mode === "live")         jsonResponseBadge.textContent = "Live response";
   else if (mode === "sandbox") jsonResponseBadge.textContent = "Sandbox";
-  else                    jsonResponseBadge.textContent = "Awaiting request";
+  else                         jsonResponseBadge.textContent = "Awaiting request";
+}
+
+// ── Response Summary Strip ────────────────────────────────────
+
+function updateSummary(rec, risk, score, latencyMs, hash) {
+  rsDecision.textContent = rec || "—";
+  rsDecision.className   = "rs-value";
+  if (rec === "APPROVE")     rsDecision.classList.add("rs-approve");
+  else if (rec === "REVIEW") rsDecision.classList.add("rs-review");
+  else if (rec === "DENY")   rsDecision.classList.add("rs-deny");
+
+  rsRisk.textContent = risk || "—";
+  rsRisk.className   = "rs-value";
+  if (risk === "LOW")         rsRisk.classList.add("rs-low");
+  else if (risk === "MEDIUM") rsRisk.classList.add("rs-medium");
+  else if (risk === "HIGH")   rsRisk.classList.add("rs-high");
+
+  rsScore.textContent   = (score !== undefined && score !== null) ? score : "—";
+  rsLatency.textContent = latencyMs ? `${latencyMs}ms` : "—";
+
+  if (hash && !hash.includes("Proof hash:") && hash !== "-") {
+    rsHash.textContent = hash.length > 18 ? hash.slice(0, 16) + "…" : hash;
+  } else {
+    rsHash.textContent = "—";
+  }
 }
 
 // ── Core helpers ──────────────────────────────────────────────
@@ -1281,7 +1481,6 @@ function getPayload() {
 
 async function runVerification() {
   try {
-    // --- Init state ---
     verifyBtn.disabled    = true;
     verifyBtn.textContent = "Sending request...";
     verifyBtn.className   = "btn-sending";
@@ -1309,13 +1508,11 @@ async function runVerification() {
     const startedAt = performance.now();
     const payload   = getPayload();
 
-    // Animate lifecycle steps
     setLifecycle(1, "lc-done");
     setTimeout(() => { setLifecycle(2, "lc-active"); setStatus("API call sent..."); }, 120);
     setTimeout(() => { setLifecycle(3, "lc-active"); setStatus("Scoring decision risk..."); }, 350);
     setTimeout(() => { setLifecycle(4, "lc-active"); setStatus("Generating verification proof..."); }, 600);
 
-    // --- API Call ---
     const res  = await fetch("/v1/decision/run", {
       method:  "POST",
       headers: getHeaders(),
@@ -1324,72 +1521,64 @@ async function runVerification() {
 
     const data = await res.json();
 
-    if (!res.ok) {
-      throw new Error(data.error || "Verification unavailable");
-    }
+    if (!res.ok) throw new Error(data.error || "Verification unavailable");
 
-    // --- Live success ---
     const score  = data.score  || {};
     const log    = data.log    || {};
     const verify = data.verify || {};
 
     const clientLatency = Math.round(performance.now() - startedAt);
-    const decisionId    =
-      data.decision_id   || score.decision_id  ||
-      log.decision_id    || verify.decision_id || "-";
-
-    const proof =
-      verify.ledger_hash || verify.proof_hash  ||
-      log.hash           || log.proof_hash     ||
-      data.proof_hash    || "-";
-
-    const apiRiskScore = data.risk_score || score.risk_score;
+    const decisionId    = data.decision_id  || score.decision_id || log.decision_id || verify.decision_id || "-";
+    const proof         = verify.ledger_hash || verify.proof_hash || log.hash || log.proof_hash || data.proof_hash || "-";
+    const apiRiskScore  = data.risk_score || score.risk_score;
+    const rec           = score.recommendation || data.recommendation || "-";
+    const risk          = score.risk_level     || data.risk_level     || "-";
 
     decisionIdValue.textContent     = decisionId;
     latencyValue.textContent        = `Round trip: ${clientLatency}ms`;
-    recommendationValue.textContent = score.recommendation || data.recommendation || "-";
-    riskLevelValue.textContent      = score.risk_level     || data.risk_level     || "-";
+    recommendationValue.textContent = rec;
+    riskLevelValue.textContent      = risk;
 
-    if (apiRiskScore !== undefined) {
-      riskScoreValue.textContent = `risk_score: ${apiRiskScore}`;
-    }
+    if (apiRiskScore !== undefined) riskScoreValue.textContent = `risk_score: ${apiRiskScore}`;
 
-    setBadge(score.risk_level || data.risk_level);
+    setBadge(risk);
     setWhyAndPolicy();
 
     responseBadge.innerHTML     = '<span class="response-badge response-badge-live">Live API response</span>';
     sandboxNotice.style.display = "none";
-
-    proofStatus.innerHTML = `<span class="proof-ok">Verified &#10003;</span>`;
-    proofHash.textContent = proof;
+    proofStatus.innerHTML       = `<span class="proof-ok">Verified &#10003;</span>`;
+    proofHash.textContent       = proof;
 
     setStatus(`Verification complete. Decision ID: ${decisionId}`);
     setApiMode("live");
     lc5Label.innerHTML = "Live response<br>ready";
     setLifecycle(5, "lc-done");
 
-    setJsonResponse({
+    const liveObj = {
       decision_id:    decisionId,
-      recommendation: score.recommendation || data.recommendation || "-",
+      recommendation: rec,
       risk_score:     apiRiskScore !== undefined ? apiRiskScore : null,
-      risk_level:     score.risk_level || data.risk_level || "-",
+      risk_level:     risk,
       policy:         data.policy || "-",
       proof_hash:     proof,
       verified:       true,
       latency_ms:     data.latency_ms || clientLatency
-    }, "live");
+    };
 
-    verifyBtn.textContent = "Live response &#10003;";
-    verifyBtn.className   = "btn-done";
+    setJsonResponse(liveObj, "live");
+    updateSummary(rec, risk, apiRiskScore, data.latency_ms || clientLatency, proof);
+
+    verifyBtn.innerHTML = "Live response &#10003;";
+    verifyBtn.className = "btn-done";
 
   } catch (error) {
 
-    // --- Sandbox fallback ---
     const p         = presets[activePreset] || presets.stablecoin;
     const sandboxId = "dec_sandbox_" + Math.random().toString(36).slice(2, 8);
     const h1        = Math.random().toString(16).slice(2, 6);
     const h2        = Math.random().toString(16).slice(2, 6);
     const sandboxMs = Math.floor(400 + Math.random() * 200);
+    const sandboxHash = `SHA-256: 0x${h1}...${h2}`;
 
     responseBadge.innerHTML     = '<span class="response-badge response-badge-sandbox">Sandbox response</span>';
     sandboxNotice.style.display = "";
@@ -1405,7 +1594,7 @@ async function runVerification() {
     policyList.innerHTML = p.policy.map(pol => `<li>${pol}</li>`).join("");
 
     proofStatus.innerHTML = `<span class="proof-ok">Sandbox verification &#10003;</span>`;
-    proofHash.textContent = `SHA-256: 0x${h1}...${h2}`;
+    proofHash.textContent = sandboxHash;
 
     setStatus(`Sandbox response. Decision ID: ${sandboxId}`);
     setApiMode("sandbox");
@@ -1418,20 +1607,22 @@ async function runVerification() {
       risk_score:     p.fallbackScore,
       risk_level:     p.fallbackRisk,
       policy:         p.fallbackPolicy,
-      proof_hash:     `SHA-256: 0x${h1}...${h2}`,
+      proof_hash:     sandboxHash,
       verified:       false,
       latency_ms:     sandboxMs,
       mode:           "sandbox"
     }, "sandbox");
 
-    verifyBtn.textContent = "Sandbox response &#10003;";
-    verifyBtn.className   = "btn-sandbox";
+    updateSummary(p.fallbackRec, p.fallbackRisk, p.fallbackScore, sandboxMs, sandboxHash);
+
+    verifyBtn.innerHTML = "Sandbox response &#10003;";
+    verifyBtn.className = "btn-sandbox";
 
   } finally {
     setTimeout(() => {
-      verifyBtn.disabled    = false;
-      verifyBtn.innerHTML   = "Verify Decision";
-      verifyBtn.className   = "btn-primary";
+      verifyBtn.disabled  = false;
+      verifyBtn.innerHTML = "Verify Decision";
+      verifyBtn.className = "btn-primary";
     }, 1800);
   }
 }
@@ -1445,11 +1636,42 @@ copyProofBtn.addEventListener("click", async () => {
   if (!text || text.includes("Proof hash:") || text === "-") return;
   try {
     await navigator.clipboard.writeText(text);
-    copyProofBtn.textContent = "Copied &#10003;";
+    copyProofBtn.textContent = "Copied ✓";
     setTimeout(() => { copyProofBtn.textContent = "Copy Proof Hash"; }, 1200);
   } catch {
     copyProofBtn.textContent = "Copy failed";
   }
+});
+
+// ── Copy JSON ─────────────────────────────────────────────────
+
+copyJsonBtn.addEventListener("click", async () => {
+  const text = jsonResponsePre.textContent;
+  if (!text || text.includes('"decision_id": "—"')) return;
+  try {
+    await navigator.clipboard.writeText(text);
+    copyJsonBtn.textContent = "Copied ✓";
+    copyJsonBtn.classList.add("copied");
+    setTimeout(() => {
+      copyJsonBtn.textContent = "Copy JSON";
+      copyJsonBtn.classList.remove("copied");
+    }, 1500);
+  } catch {
+    copyJsonBtn.textContent = "Copy failed";
+    setTimeout(() => { copyJsonBtn.textContent = "Copy JSON"; }, 1500);
+  }
+});
+
+// ── SDK Tab Switching ─────────────────────────────────────────
+
+document.querySelectorAll(".sdk-tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const tab = btn.dataset.tab;
+    document.querySelectorAll(".sdk-tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".sdk-tab-content").forEach(c => c.classList.remove("active"));
+    btn.classList.add("active");
+    document.querySelector(`.sdk-tab-content[data-tab="${tab}"]`).classList.add("active");
+  });
 });
 
 // ── Live Payload Preview ──────────────────────────────────────
