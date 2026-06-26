@@ -716,6 +716,166 @@
       50%      { opacity: 1; }
     }
 
+    /* ── Mode Toggle Visual ── */
+    .mode-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .mode-toggle-label { font-size: 10px; color: #475569; font-weight: 700; margin-right: 2px; }
+    .mode-toggle-pill {
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #334155;
+      background: #0d1525;
+      border: 1px solid #1e2d4a;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .mode-toggle-pill.mt-live    { background: rgba(74,222,128,0.12);  color: #4ade80; border-color: rgba(74,222,128,0.3); }
+    .mode-toggle-pill.mt-auto    { background: rgba(147,197,253,0.08); color: #93c5fd; border-color: rgba(147,197,253,0.2); }
+    .mode-toggle-pill.mt-sandbox { background: rgba(251,191,36,0.12);  color: #fbbf24; border-color: rgba(251,191,36,0.3); }
+
+    /* ── Copy cURL button ── */
+    .copy-curl-btn {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid #273556;
+      background: #0f1a30;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .copy-curl-btn:hover  { background: #1e2d4a; color: #fff; }
+    .copy-curl-btn.copied { background: rgba(34,197,94,0.12); color: #4ade80; border-color: rgba(34,197,94,0.3); }
+
+    /* ── Copy SDK button ── */
+    .sdk-section-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .copy-sdk-btn {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      border: 1px solid #273556;
+      background: #0f1a30;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .copy-sdk-btn:hover  { background: #1e2d4a; color: #fff; }
+    .copy-sdk-btn.copied { background: rgba(34,197,94,0.12); color: #4ade80; border-color: rgba(34,197,94,0.3); }
+
+    /* ── Response Time Mini Strip ── */
+    .rt-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 6px;
+      padding: 7px 14px;
+      background: #09101f;
+      border: 1px solid #1a2540;
+      border-radius: 8px;
+      flex-wrap: wrap;
+    }
+    .rt-item { display: flex; align-items: center; gap: 5px; }
+    .rt-label { font-size: 10px; color: #334155; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .rt-value { font-size: 11px; font-weight: 700; color: #475569; font-family: monospace; }
+    .rt-value.rt-live    { color: #4ade80; }
+    .rt-value.rt-sandbox { color: #fbbf24; }
+    .rt-sep { color: #1e2d4a; font-size: 12px; }
+
+    /* ── Request History ── */
+    .history-panel {
+      margin-top: 12px;
+      border: 1px solid #1e2d4a;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 14px;
+      background: #0e1628;
+      border-bottom: 1px solid #1e2d4a;
+    }
+    .history-hl  { font-size: 10px; color: #67e8f9; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .history-cnt { font-size: 10px; color: #475569; }
+    .history-item {
+      display: grid;
+      grid-template-columns: 56px 1fr 64px 54px 64px;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 14px;
+      border-bottom: 1px solid #0f1a30;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .history-item:last-child { border-bottom: none; }
+    .history-item:hover { background: rgba(59,130,246,0.06); }
+    .hi-time   { color: #475569; font-family: monospace; font-size: 10px; }
+    .hi-preset { color: #94a3b8; font-weight: 600; font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .hi-rec    { font-weight: 700; font-family: monospace; font-size: 11px; }
+    .hi-risk   { font-size: 10px; font-weight: 700; }
+    .hi-mode   { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 999px; text-align: center; }
+    .hi-approve { color: #4ade80; }
+    .hi-review  { color: #fbbf24; }
+    .hi-deny    { color: #f87171; }
+    .hi-low     { color: #4ade80; }
+    .hi-medium  { color: #fbbf24; }
+    .hi-high    { color: #f87171; }
+    .hi-live    { background: rgba(74,222,128,0.1);  color: #4ade80; }
+    .hi-sandbox { background: rgba(251,191,36,0.1); color: #fbbf24; }
+
+    /* ── Response Contract ── */
+    .contract-section {
+      margin-top: 8px;
+      border: 1px solid #1e2d4a;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0d1525;
+    }
+    .contract-summary {
+      padding: 9px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      background: #0e1628;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+    .contract-summary::-webkit-details-marker { display: none; }
+    .contract-summary::before { content: "▶"; font-size: 8px; color: #334155; transition: transform 0.2s; margin-right: 2px; }
+    details[open] .contract-summary::before { transform: rotate(90deg); }
+    .contract-summary:hover { color: #94a3b8; }
+    .contract-body { padding: 12px 14px; }
+    .contract-desc { font-size: 11px; color: #475569; margin-bottom: 10px; }
+    .contract-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    .contract-table th {
+      text-align: left; padding: 4px 8px;
+      color: #334155; font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 1px solid #1e2d4a;
+    }
+    .contract-table td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #0f1a30;
+      font-family: monospace;
+      color: #94a3b8;
+    }
+    .contract-table td:first-child  { color: #93c5fd; }
+    .contract-table td:nth-child(2) { color: #475569; }
+    .contract-table tr:last-child td { border-bottom: none; }
+
     /* ── Responsive ── */
     @media (max-width: 860px) {
       .grid, .row { grid-template-columns: 1fr; }
@@ -797,6 +957,14 @@
       </div>
     </div>
 
+    <!-- Mode Toggle Visual -->
+    <div class="mode-toggle">
+      <span class="mode-toggle-label">Mode:</span>
+      <span class="mode-toggle-pill" id="mtLive">Live API</span>
+      <span class="mode-toggle-pill mt-auto" id="mtAuto">Auto</span>
+      <span class="mode-toggle-pill" id="mtSandbox">Sandbox Preview</span>
+    </div>
+
     <!-- Main Grid -->
     <div class="grid">
 
@@ -865,7 +1033,10 @@
         <div class="payload-preview">
           <div class="payload-preview-header">
             <span class="payload-preview-label">Request Payload</span>
-            <span class="payload-preview-method">application/json</span>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="payload-preview-method">application/json</span>
+              <button class="copy-curl-btn" id="copyCurlBtn" type="button">Copy cURL</button>
+            </div>
           </div>
           <pre class="payload-pre" id="payloadPre"></pre>
         </div>
@@ -981,6 +1152,17 @@
       </div>
     </div>
 
+    <!-- Response Time Mini Strip -->
+    <div class="rt-strip">
+      <div class="rt-item"><span class="rt-label">API Latency</span><span class="rt-value" id="rtApiLatency">—</span></div>
+      <span class="rt-sep">·</span>
+      <div class="rt-item"><span class="rt-label">Proxy Latency</span><span class="rt-value" id="rtProxyLatency">—</span></div>
+      <span class="rt-sep">·</span>
+      <div class="rt-item"><span class="rt-label">Mode</span><span class="rt-value" id="rtMode">—</span></div>
+      <span class="rt-sep">·</span>
+      <div class="rt-item"><span class="rt-label">Last Request</span><span class="rt-value" id="rtLastRequest">—</span></div>
+    </div>
+
     <!-- Raw JSON Response -->
     <div class="json-response-card">
       <div class="json-response-header">
@@ -1001,6 +1183,36 @@
   "latency_ms": null
 }</pre>
     </div>
+
+    <!-- Request History -->
+    <div class="history-panel" id="historyPanel" style="display:none">
+      <div class="history-header">
+        <span class="history-hl">Request History</span>
+        <span class="history-cnt" id="historyCnt"></span>
+      </div>
+      <div id="historyList"></div>
+    </div>
+
+    <!-- Response Contract -->
+    <details class="contract-section">
+      <summary class="contract-summary">Response Contract</summary>
+      <div class="contract-body">
+        <div class="contract-desc">Stable response fields guaranteed by the Trust OS Decision Verification API. These fields are present in both live and sandbox responses.</div>
+        <table class="contract-table">
+          <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>decision_id</td><td>string</td><td>Unique identifier for this verification event</td></tr>
+            <tr><td>recommendation</td><td>string</td><td>APPROVE · REVIEW · DENY</td></tr>
+            <tr><td>risk_score</td><td>number</td><td>0.0 – 1.0 policy evaluation score</td></tr>
+            <tr><td>risk_level</td><td>string</td><td>LOW · MEDIUM · HIGH</td></tr>
+            <tr><td>policy</td><td>string</td><td>Name of the policy applied to this decision</td></tr>
+            <tr><td>proof_hash</td><td>string</td><td>SHA-256 cryptographic verification proof</td></tr>
+            <tr><td>latency_ms</td><td>number</td><td>API evaluation latency in milliseconds</td></tr>
+            <tr><td>mode</td><td>string</td><td>"sandbox" when live API is unavailable</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
 
     <!-- Developer Resources -->
     <div class="dev-resources">
@@ -1048,7 +1260,10 @@
       <!-- SDK / REST Tabs -->
       <div class="sdk-section">
         <div class="sdk-section-header">
-          <div class="sdk-section-label">Code Examples</div>
+          <div class="sdk-section-top">
+            <div class="sdk-section-label">Code Examples</div>
+            <button class="copy-sdk-btn" id="copySdkBtn" type="button">Copy SDK</button>
+          </div>
           <div class="sdk-tab-nav">
             <button class="sdk-tab-btn active" data-tab="js">JavaScript</button>
             <button class="sdk-tab-btn" data-tab="py">Python</button>
@@ -1567,6 +1782,17 @@ async function runVerification() {
 
     setJsonResponse(liveObj, "live");
     updateSummary(rec, risk, apiRiskScore, data.latency_ms || clientLatency, proof);
+    addToHistory({
+      time: new Date().toLocaleTimeString("en-US", { hour12: false }),
+      preset: document.getElementById("user_id").value.trim() || activePreset,
+      rec, risk, score: apiRiskScore,
+      latencyMs: data.latency_ms || clientLatency,
+      hash: proof, mode: "live",
+      payloadText: payloadPre.textContent,
+      jsonText: JSON.stringify(liveObj, null, 2)
+    });
+    updateRtStrip(data.latency_ms, data.proxy_latency_ms, "live");
+    setModeToggle("live");
 
     verifyBtn.innerHTML = "Live response &#10003;";
     verifyBtn.className = "btn-done";
@@ -1614,6 +1840,21 @@ async function runVerification() {
     }, "sandbox");
 
     updateSummary(p.fallbackRec, p.fallbackRisk, p.fallbackScore, sandboxMs, sandboxHash);
+    addToHistory({
+      time: new Date().toLocaleTimeString("en-US", { hour12: false }),
+      preset: document.getElementById("user_id").value.trim() || activePreset,
+      rec: p.fallbackRec, risk: p.fallbackRisk, score: p.fallbackScore,
+      latencyMs: sandboxMs, hash: sandboxHash, mode: "sandbox",
+      payloadText: payloadPre.textContent,
+      jsonText: JSON.stringify({
+        decision_id: sandboxId, recommendation: p.fallbackRec,
+        risk_score: p.fallbackScore, risk_level: p.fallbackRisk,
+        policy: p.fallbackPolicy, proof_hash: sandboxHash,
+        verified: false, latency_ms: sandboxMs, mode: "sandbox"
+      }, null, 2)
+    });
+    updateRtStrip(sandboxMs, null, "sandbox");
+    setModeToggle("sandbox");
 
     verifyBtn.innerHTML = "Sandbox response &#10003;";
     verifyBtn.className = "btn-sandbox";
@@ -1683,9 +1924,132 @@ document.querySelectorAll(".sdk-tab-btn").forEach(btn => {
   document.getElementById(id).addEventListener("input", updatePayloadPreview);
 });
 
+// ── Mode Toggle Visual ────────────────────────────────────────
+
+function setModeToggle(mode) {
+  document.getElementById("mtLive").className    = "mode-toggle-pill" + (mode === "live"    ? " mt-live"    : "");
+  document.getElementById("mtAuto").className    = "mode-toggle-pill" + (mode === "auto"    ? " mt-auto"    : "");
+  document.getElementById("mtSandbox").className = "mode-toggle-pill" + (mode === "sandbox" ? " mt-sandbox" : "");
+}
+
+// ── Response Time Mini Strip ──────────────────────────────────
+
+function updateRtStrip(apiLatency, proxyLatency, mode) {
+  const now = new Date().toLocaleTimeString("en-US", { hour12: false });
+  document.getElementById("rtApiLatency").textContent   = apiLatency   ? `${apiLatency}ms`   : "—";
+  document.getElementById("rtProxyLatency").textContent = proxyLatency ? `${proxyLatency}ms` : "—";
+  document.getElementById("rtLastRequest").textContent  = now;
+  const el = document.getElementById("rtMode");
+  el.textContent = mode || "—";
+  el.className   = "rt-value" + (mode === "live" ? " rt-live" : mode === "sandbox" ? " rt-sandbox" : "");
+}
+
+// ── Request History ───────────────────────────────────────────
+
+const requestHistory = [];
+const MAX_HISTORY = 5;
+
+function addToHistory(entry) {
+  requestHistory.unshift(entry);
+  if (requestHistory.length > MAX_HISTORY) requestHistory.pop();
+  renderHistory();
+}
+
+function renderHistory() {
+  const panel = document.getElementById("historyPanel");
+  const list  = document.getElementById("historyCnt");
+  if (requestHistory.length === 0) { panel.style.display = "none"; return; }
+  panel.style.display = "";
+  list.textContent = `${requestHistory.length} of ${MAX_HISTORY}`;
+  document.getElementById("historyList").innerHTML = requestHistory.map((e, i) => `
+    <div class="history-item" onclick="restoreHistory(${i})">
+      <span class="hi-time">${e.time}</span>
+      <span class="hi-preset">${e.preset}</span>
+      <span class="hi-rec hi-${e.rec ? e.rec.toLowerCase() : ""}">${e.rec || "—"}</span>
+      <span class="hi-risk hi-${e.risk ? e.risk.toLowerCase() : ""}">${e.risk || "—"}</span>
+      <span class="hi-mode hi-${e.mode}">${e.mode === "live" ? "Live" : "Sandbox"}</span>
+    </div>
+  `).join("");
+}
+
+function restoreHistory(idx) {
+  const e = requestHistory[idx];
+  if (!e) return;
+  payloadPre.textContent      = e.payloadText;
+  jsonResponsePre.textContent = e.jsonText;
+  jsonResponseBadge.className = `json-response-badge mode-${e.mode}`;
+  jsonResponseBadge.textContent = e.mode === "live" ? "Live response" : "Sandbox";
+  updateSummary(e.rec, e.risk, e.score, e.latencyMs, e.hash);
+  updateRtStrip(e.latencyMs, null, e.mode);
+}
+
+// ── Copy cURL ─────────────────────────────────────────────────
+
+function generateCurl() {
+  const payload = {
+    action:      document.getElementById("Request").value,
+    amount:      50000,
+    currency:    "USDC",
+    destination: document.getElementById("EscalationTarget").value.trim(),
+    source:      document.getElementById("Source").value,
+    priority:    document.getElementById("Priority").value
+  };
+  return `curl -X POST https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify \\\n  -H "Content-Type: application/json" \\\n  -H "x-api-key: YOUR_API_KEY" \\\n  -d '${JSON.stringify(payload, null, 2)}'`;
+}
+
+document.getElementById("copyCurlBtn").addEventListener("click", async () => {
+  const btn = document.getElementById("copyCurlBtn");
+  try {
+    await navigator.clipboard.writeText(generateCurl());
+    btn.textContent = "Copied ✓";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = "Copy cURL"; btn.classList.remove("copied"); }, 1500);
+  } catch {
+    btn.textContent = "Copy failed";
+    setTimeout(() => { btn.textContent = "Copy cURL"; }, 1500);
+  }
+});
+
+// ── Copy SDK Snippet ──────────────────────────────────────────
+
+function generateSDKSnippet() {
+  const action      = document.getElementById("Request").value;
+  const destination = document.getElementById("EscalationTarget").value.trim();
+  const source      = document.getElementById("Source").value;
+  return `const { TrustOSClient } = require("@trust-os-sdk/trust-os-sdk");
+
+const client = new TrustOSClient({
+  apiKey: process.env.TRUST_OS_API_KEY
+});
+
+const result = await client.verifyDecision({
+  action: "${action}",
+  amount: 50000,
+  currency: "USDC",
+  destination: "${destination}",
+  source: "${source}"
+});
+
+console.log(result.recommendation); // APPROVE | REVIEW | DENY`;
+}
+
+document.getElementById("copySdkBtn").addEventListener("click", async () => {
+  const btn = document.getElementById("copySdkBtn");
+  try {
+    await navigator.clipboard.writeText(generateSDKSnippet());
+    btn.textContent = "Copied ✓";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = "Copy SDK"; btn.classList.remove("copied"); }, 1500);
+  } catch {
+    btn.textContent = "Copy failed";
+    setTimeout(() => { btn.textContent = "Copy SDK"; }, 1500);
+  }
+});
+
 // ── Init ──────────────────────────────────────────────────────
 
 updatePayloadPreview();
+setModeToggle("auto");
 
   </script>
 </body>
