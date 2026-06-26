@@ -22,6 +22,7 @@
       padding: 32px 20px 48px;
     }
 
+    /* ── Top Nav ── */
     .top-link {
       display: flex;
       justify-content: flex-end;
@@ -40,6 +41,7 @@
       background: rgba(103,232,249,0.05);
     }
 
+    /* ── Hero ── */
     .eyebrow {
       display: inline-block;
       font-size: 12px;
@@ -61,13 +63,109 @@
       font-size: 16px;
     }
 
+    .small {
+      color: #94a3b8;
+      font-size: 13px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* ── Dev copy blurb ── */
+    .dev-copy {
+      margin-top: 14px;
+      padding: 12px 16px;
+      background: rgba(59,130,246,0.05);
+      border: 1px solid rgba(59,130,246,0.15);
+      border-radius: 10px;
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    .dev-copy p { margin: 0; }
+    .dev-copy p + p { margin-top: 6px; }
+
+    /* ── API Status Bar ── */
+    .api-status-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 16px;
+      background: #0e1628;
+      border: 1px solid #1e2d4a;
+      border-radius: 10px;
+      margin-top: 16px;
+      font-size: 12px;
+      flex-wrap: wrap;
+    }
+
+    .api-status-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .api-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #334155;
+      flex-shrink: 0;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .api-status-dot.dot-live {
+      background: #4ade80;
+      box-shadow: 0 0 6px rgba(74,222,128,0.5);
+    }
+
+    .api-status-dot.dot-sandbox {
+      background: #fbbf24;
+    }
+
+    .api-status-dot.dot-connecting {
+      background: #93c5fd;
+      animation: dotBlink 0.8s ease-in-out infinite;
+    }
+
+    .api-status-key {
+      color: #475569;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .api-status-val {
+      color: #cbd5e1;
+      font-weight: 700;
+      font-size: 12px;
+      transition: color 0.3s;
+    }
+
+    .api-mono {
+      font-family: monospace;
+      color: #93c5fd;
+      font-size: 11.5px;
+    }
+
+    .api-status-sep {
+      color: #1e3a5f;
+      font-size: 14px;
+    }
+
+    @keyframes dotBlink {
+      0%,100% { opacity: 0.4; }
+      50%      { opacity: 1; }
+    }
+
+    /* ── Grid ── */
     .grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 20px;
-      margin-top: 28px;
+      margin-top: 22px;
     }
 
+    /* ── Cards ── */
     .card {
       background: #121a30;
       border: 1px solid #24304f;
@@ -124,127 +222,15 @@
       font-weight: 700;
       cursor: pointer;
       font-size: 14px;
+      transition: opacity 0.15s;
     }
 
-    .btn-primary {
-      background: #3b82f6;
-      color: white;
-    }
+    .btn-primary  { background: #3b82f6; color: #fff; }
+    .btn-sending  { background: #1d4ed8; color: #fff; }
+    .btn-done     { background: #16a34a; color: #fff; }
+    .btn-sandbox  { background: #b45309; color: #fff; }
 
-    .btn-done {
-      background: #16a34a;
-      color: white;
-    }
-
-    .metric-box {
-      background: #0f162b;
-      border: 1px solid #273556;
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 12px;
-    }
-
-    .metric-label {
-      font-size: 12px;
-      color: #94a3b8;
-      margin-bottom: 6px;
-    }
-
-    .metric-value {
-      font-size: 26px;
-      font-weight: 800;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-top: 8px;
-    }
-
-    .badge-low {
-      background: rgba(34,197,94,0.15);
-      color: #4ade80;
-    }
-
-    .badge-medium {
-      background: rgba(245,158,11,0.15);
-      color: #fbbf24;
-    }
-
-    .badge-high {
-      background: rgba(239,68,68,0.15);
-      color: #f87171;
-    }
-
-    .status {
-      margin-top: 16px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      background: #0f162b;
-      border: 1px solid #273556;
-      color: #cbd5e1;
-      font-size: 14px;
-      min-height: 48px;
-    }
-
-    pre {
-      margin: 16px 0 0;
-      white-space: pre-wrap;
-      word-break: break-word;
-      background: #09101f;
-      color: #dbeafe;
-      padding: 16px;
-      border-radius: 14px;
-      border: 1px solid #22314e;
-      font-size: 12px;
-      min-height: 160px;
-      overflow: auto;
-    }
-
-    .small {
-      color: #94a3b8;
-      font-size: 13px;
-      margin-top: 12px;
-      line-height: 1.6;
-    }
-
-    .proof-list {
-      margin: 8px 0 0;
-      padding-left: 18px;
-      color: #cbd5e1;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .proof-ok {
-      color: #4ade80;
-      font-weight: 800;
-    }
-
-    .proof-wait {
-      color: #fbbf24;
-      font-weight: 800;
-    }
-
-    .dev-output {
-      margin-top: 14px;
-      border: 1px solid #273556;
-      border-radius: 14px;
-      background: #0f162b;
-      padding: 12px 14px;
-    }
-
-    .dev-output summary {
-      cursor: pointer;
-      color: #94a3b8;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    /* Preset cards */
+    /* ── Preset Cards ── */
     .preset-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -261,38 +247,74 @@
       transition: border-color 0.15s, background 0.15s;
     }
 
-    .preset-card:hover {
-      border-color: #3b82f6;
+    .preset-card:hover        { border-color: #3b82f6; }
+    .preset-card.active       { border-color: #67e8f9; background: rgba(103,232,249,0.06); }
+    .preset-card-title        { font-weight: 700; font-size: 12px; color: #fff; margin-bottom: 3px; }
+    .preset-card-text         { font-size: 11px; color: #94a3b8; line-height: 1.4; }
+    .preset-label             { font-size: 11px; color: #67e8f9; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+
+    /* ── Payload Preview ── */
+    .payload-preview {
+      margin-top: 14px;
+      border: 1px solid #1e2d4a;
+      border-radius: 10px;
+      overflow: hidden;
     }
 
-    .preset-card.active {
-      border-color: #67e8f9;
-      background: rgba(103,232,249,0.06);
+    .payload-preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 12px;
+      background: #0e1628;
+      border-bottom: 1px solid #1e2d4a;
     }
 
-    .preset-card-title {
-      font-weight: 700;
-      font-size: 12px;
-      color: #fff;
-      margin-bottom: 3px;
-    }
-
-    .preset-card-text {
-      font-size: 11px;
-      color: #94a3b8;
-      line-height: 1.4;
-    }
-
-    .preset-label {
-      font-size: 11px;
+    .payload-preview-label {
+      font-size: 10px;
       color: #67e8f9;
       font-weight: 700;
-      letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      letter-spacing: 0.08em;
     }
 
-    /* Response mode badge */
+    .payload-preview-method {
+      font-size: 10px;
+      color: #475569;
+      font-family: monospace;
+    }
+
+    .payload-pre {
+      margin: 0;
+      padding: 10px 14px;
+      background: #09101f;
+      color: #93c5fd;
+      font-family: monospace;
+      font-size: 11px;
+      white-space: pre;
+      overflow-x: auto;
+      line-height: 1.55;
+      border: none;
+      min-height: 0;
+    }
+
+    /* ── Decision Output ── */
+    .metric-box {
+      background: #0f162b;
+      border: 1px solid #273556;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .metric-label  { font-size: 12px; color: #94a3b8; margin-bottom: 6px; }
+    .metric-value  { font-size: 26px; font-weight: 800; }
+
+    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; margin-top: 8px; }
+    .badge-low    { background: rgba(34,197,94,0.15);  color: #4ade80; }
+    .badge-medium { background: rgba(245,158,11,0.15); color: #fbbf24; }
+    .badge-high   { background: rgba(239,68,68,0.15);  color: #f87171; }
+
     .response-badge {
       display: inline-block;
       padding: 3px 9px;
@@ -302,18 +324,9 @@
       vertical-align: middle;
       margin-left: 8px;
     }
+    .response-badge-live    { background: rgba(34,197,94,0.15);  color: #4ade80; }
+    .response-badge-sandbox { background: rgba(245,158,11,0.15); color: #fbbf24; }
 
-    .response-badge-live {
-      background: rgba(34,197,94,0.15);
-      color: #4ade80;
-    }
-
-    .response-badge-sandbox {
-      background: rgba(245,158,11,0.15);
-      color: #fbbf24;
-    }
-
-    /* Sandbox notice */
     .sandbox-notice {
       margin-bottom: 14px;
       padding: 10px 14px;
@@ -324,17 +337,189 @@
       color: #cbd5e1;
       line-height: 1.55;
     }
+    .sandbox-notice strong { color: #fbbf24; display: block; margin-bottom: 3px; }
 
-    .sandbox-notice strong {
-      color: #fbbf24;
-      display: block;
-      margin-bottom: 3px;
+    .meta-grid { display: block; margin-bottom: 12px; }
+
+    #latencyValue { white-space: pre-line; line-height: 1.6; font-size: 13px; color: #fff; }
+
+    .proof-list { margin: 8px 0 0; padding-left: 18px; color: #cbd5e1; font-size: 13px; line-height: 1.6; }
+    .proof-ok   { color: #4ade80; font-weight: 800; }
+    .proof-wait { color: #fbbf24; font-weight: 800; }
+
+    .hash-value {
+      margin-top: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #dbeafe;
+      background: #09101f;
+      border: 1px solid #22314e;
+      border-radius: 10px;
+      padding: 10px;
+      word-break: break-all;
     }
 
-    /* Developer Resources */
-    .dev-resources {
-      margin-top: 48px;
+    .copy-button {
+      margin-top: 10px;
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
     }
+
+    .status {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #0f162b;
+      border: 1px solid #273556;
+      color: #cbd5e1;
+      font-size: 14px;
+      min-height: 48px;
+    }
+
+    /* ── Lifecycle Bar ── */
+    .lifecycle-bar {
+      margin-top: 20px;
+      background: #0e1628;
+      border: 1px solid #1e2d4a;
+      border-radius: 14px;
+      padding: 16px 20px;
+    }
+
+    .lifecycle-title {
+      font-size: 10px;
+      color: #67e8f9;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      margin-bottom: 14px;
+    }
+
+    .lifecycle-steps {
+      display: flex;
+      align-items: flex-start;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+
+    .lc-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 88px;
+    }
+
+    .lc-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: 2px solid #1e3a5f;
+      background: transparent;
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+      margin-bottom: 8px;
+      flex-shrink: 0;
+    }
+
+    .lc-dot.lc-active {
+      border-color: #3b82f6;
+      background: #3b82f6;
+      box-shadow: 0 0 8px rgba(59,130,246,0.6);
+      animation: lcPulse 1s ease-in-out infinite;
+    }
+
+    .lc-dot.lc-done    { border-color: #4ade80; background: #4ade80; }
+    .lc-dot.lc-sandbox { border-color: #fbbf24; background: #fbbf24; }
+
+    .lc-lbl {
+      font-size: 10px;
+      color: #334155;
+      text-align: center;
+      line-height: 1.4;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .lc-lbl.lc-active  { color: #93c5fd; }
+    .lc-lbl.lc-done    { color: #4ade80; }
+    .lc-lbl.lc-sandbox { color: #fbbf24; }
+
+    .lc-conn {
+      flex: 1;
+      height: 2px;
+      background: #1e2d4a;
+      margin-top: 4px;
+      min-width: 16px;
+      transition: background 0.4s;
+      align-self: flex-start;
+    }
+
+    .lc-conn.lc-done    { background: #4ade80; }
+    .lc-conn.lc-sandbox { background: #fbbf24; }
+
+    @keyframes lcPulse {
+      0%,100% { opacity: 0.6; box-shadow: 0 0 4px rgba(59,130,246,0.4); }
+      50%      { opacity: 1;   box-shadow: 0 0 10px rgba(59,130,246,0.8); }
+    }
+
+    /* ── Raw JSON Response Card ── */
+    .json-response-card {
+      margin-top: 20px;
+      background: #121a30;
+      border: 1px solid #24304f;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .json-response-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: #0e1628;
+      border-bottom: 1px solid #1e2d4a;
+    }
+
+    .json-response-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #67e8f9;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .json-response-badge {
+      font-size: 11px;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .json-response-badge.mode-idle    { background: rgba(100,116,139,0.12); color: #64748b; }
+    .json-response-badge.mode-live    { background: rgba(34,197,94,0.15);   color: #4ade80; }
+    .json-response-badge.mode-sandbox { background: rgba(245,158,11,0.15);  color: #fbbf24; }
+
+    .json-response-pre {
+      margin: 0;
+      padding: 14px 16px;
+      background: #09101f;
+      color: #dbeafe;
+      font-family: monospace;
+      font-size: 12px;
+      white-space: pre;
+      overflow-x: auto;
+      line-height: 1.6;
+      border: none;
+      min-height: 0;
+    }
+
+    /* ── Developer Resources ── */
+    .dev-resources { margin-top: 44px; }
 
     .dev-resources-heading {
       color: #67e8f9;
@@ -342,12 +527,19 @@
       font-weight: 700;
       letter-spacing: 0.10em;
       text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .dev-resources-desc {
+      color: #475569;
+      font-size: 12px;
       margin-bottom: 14px;
+      line-height: 1.5;
     }
 
     .dev-resource-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
       gap: 12px;
     }
 
@@ -367,7 +559,7 @@
     }
 
     .dev-resource-label {
-      font-size: 11px;
+      font-size: 10px;
       color: #67e8f9;
       font-weight: 700;
       text-transform: uppercase;
@@ -408,15 +600,10 @@
       margin-top: 4px;
       word-break: break-all;
     }
+    .dev-resource-link:hover { color: #67e8f9; }
 
-    .dev-resource-link:hover {
-      color: #67e8f9;
-    }
-
-    /* Use cases */
-    .use-cases {
-      margin-top: 56px;
-    }
+    /* ── Use Cases ── */
+    .use-cases { margin-top: 52px; }
 
     .use-case-grid {
       display: grid;
@@ -424,30 +611,12 @@
       gap: 16px;
     }
 
-    .use-case-card {
-      border: 1px solid #273556;
-      border-radius: 12px;
-      padding: 16px;
-      background: #10182d;
-    }
+    .use-case-card         { border: 1px solid #273556; border-radius: 12px; padding: 16px; background: #10182d; }
+    .use-case-card-title   { font-weight: 700; margin-bottom: 8px; color: #fff; }
+    .use-case-card-text    { font-size: 13px; color: #94a3b8; line-height: 1.5; }
 
-    .use-case-card-title {
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: #fff;
-    }
-
-    .use-case-card-text {
-      font-size: 13px;
-      color: #94a3b8;
-      line-height: 1.5;
-    }
-
-    .production-cta {
-      margin-top: 56px;
-      display: flex;
-      justify-content: center;
-    }
+    /* ── CTA ── */
+    .production-cta      { margin-top: 52px; }
 
     .production-cta-card {
       width: 100%;
@@ -468,31 +637,14 @@
       margin-bottom: 10px;
     }
 
-    .production-cta-card h2 {
-      margin: 0 0 10px;
-      font-size: 26px;
-    }
-
-    .production-cta-text {
-      color: #b8c1d9;
-      font-size: 15px;
-      line-height: 1.6;
-      margin: 0 auto 12px;
-      max-width: 680px;
-    }
-
-    .production-cta-small {
-      color: #94a3b8;
-      font-size: 13px;
-      line-height: 1.6;
-      margin: 0 auto 20px;
-      max-width: 720px;
-    }
+    .production-cta-card h2  { margin: 0 0 10px; font-size: 26px; }
+    .production-cta-text     { color: #b8c1d9; font-size: 15px; line-height: 1.6; margin: 0 auto 12px; max-width: 680px; }
+    .production-cta-small    { color: #94a3b8; font-size: 13px; line-height: 1.6; margin: 0 auto 20px; max-width: 720px; }
 
     .production-cta-button {
       display: inline-block;
       background: #3b82f6;
-      color: #ffffff;
+      color: #fff;
       text-decoration: none;
       border-radius: 12px;
       padding: 12px 16px;
@@ -501,117 +653,95 @@
       border: 1px solid rgba(103,232,249,0.25);
     }
 
-    .production-cta-flow {
-      margin-top: 16px;
-      color: #94a3b8;
-      font-size: 13px;
-    }
+    .production-cta-flow { margin-top: 16px; color: #94a3b8; font-size: 13px; }
 
-    .meta-grid {
-      display: block;
-      margin-bottom: 12px;
-    }
-
-    #latencyValue {
-      white-space: pre-line;
-      line-height: 1.6;
-      font-size: 13px;
-      color: #ffffff;
-    }
-
-    .hash-value {
-      margin-top: 8px;
-      font-family: monospace;
-      font-size: 12px;
-      color: #dbeafe;
-      background: #09101f;
-      border: 1px solid #22314e;
-      border-radius: 10px;
-      padding: 10px;
-      word-break: break-all;
-    }
-
-    .copy-button {
-      margin-top: 10px;
-      background: #1e293b;
-      color: #ffffff;
-      border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 8px 10px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .loading-pulse {
-      animation: pulseText 1s ease-in-out infinite;
-    }
+    /* ── Loading animation ── */
+    .loading-pulse { animation: pulseText 1s ease-in-out infinite; }
 
     @keyframes pulseText {
-      0% { opacity: 0.55; }
-      50% { opacity: 1; }
-      100% { opacity: 0.55; }
+      0%,100% { opacity: 0.55; }
+      50%      { opacity: 1; }
     }
 
+    /* ── Responsive ── */
     @media (max-width: 860px) {
-      .grid,
-      .row {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 32px;
-      }
-
-      .preset-cards {
-        grid-template-columns: 1fr;
-      }
-
-      .meta-grid {
-        grid-template-columns: 1fr;
-      }
+      .grid, .row { grid-template-columns: 1fr; }
+      h1 { font-size: 32px; }
+      .preset-cards { grid-template-columns: 1fr; }
+      .api-status-bar { gap: 8px; }
+      .api-status-sep { display: none; }
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
+
+    <!-- Nav -->
     <div class="top-link">
-      <a href="https://ops.trust-os.io" target="_blank" rel="noopener">Ops Demo ↗</a>
+      <a href="https://ops.trust-os.io" target="_blank" rel="noopener">Ops Demo &#8599;</a>
       <a href="https://trust-os.io/" target="_blank">&#8592; Trust OS</a>
     </div>
 
+    <!-- Hero -->
     <div class="hero">
       <div class="eyebrow">DEVELOPER PLAYGROUND</div>
       <h1>Trust OS API Playground</h1>
       <p class="subtitle">
         Test the Decision Verification API with live requests, structured inputs, and verifiable responses.
       </p>
-      <p class="small" style="margin-top:8px;">
-        Live API when credentials are configured &middot; Sandbox response when running in preview mode &middot; Same response shape for integration planning
-      </p>
     </div>
 
+    <!-- Developer copy -->
+    <div class="dev-copy">
+      <p>Use this playground to understand the request and response shape before integrating the SDK.</p>
+      <p>Live API responses are shown when credentials are configured. Sandbox responses preserve the same response structure for integration planning.</p>
+    </div>
+
+    <!-- API Status Bar -->
+    <div class="api-status-bar">
+      <div class="api-status-item">
+        <span class="api-status-dot" id="statusDot"></span>
+        <span class="api-status-key">API Mode</span>
+        <span class="api-status-val" id="apiModeVal">Ready</span>
+      </div>
+      <span class="api-status-sep">&#183;</span>
+      <div class="api-status-item">
+        <span class="api-status-key">Endpoint</span>
+        <span class="api-status-val api-mono">POST /v1/decision/run</span>
+      </div>
+      <span class="api-status-sep">&#183;</span>
+      <div class="api-status-item">
+        <span class="api-status-key">SDK</span>
+        <span class="api-status-val api-mono">@trust-os-sdk/trust-os-sdk</span>
+      </div>
+      <span class="api-status-sep">&#183;</span>
+      <div class="api-status-item">
+        <span class="api-status-key">Response Shape</span>
+        <span class="api-status-val">Stable</span>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
     <div class="grid">
-      <!-- Left: API Request panel -->
+
+      <!-- Left: API Request -->
       <div class="card">
         <h2>API Request</h2>
 
-        <div>
-          <div class="preset-label">Quick Presets</div>
-          <div class="preset-cards">
-            <div class="preset-card active" data-preset="stablecoin" onclick="applyPreset('stablecoin')">
-              <div class="preset-card-title">Stablecoin Payment</div>
-              <div class="preset-card-text">Cross-border USDC transfer</div>
-            </div>
-            <div class="preset-card" data-preset="agent" onclick="applyPreset('agent')">
-              <div class="preset-card-title">AI Agent Action</div>
-              <div class="preset-card-text">High-impact tool use gate</div>
-            </div>
-            <div class="preset-card" data-preset="dao" onclick="applyPreset('dao')">
-              <div class="preset-card-title">DAO Treasury</div>
-              <div class="preset-card-text">Governance disbursement</div>
-            </div>
+        <div class="preset-label">Quick Presets</div>
+        <div class="preset-cards">
+          <div class="preset-card active" data-preset="stablecoin" onclick="applyPreset('stablecoin')">
+            <div class="preset-card-title">Stablecoin Payment</div>
+            <div class="preset-card-text">Cross-border USDC transfer</div>
+          </div>
+          <div class="preset-card" data-preset="agent" onclick="applyPreset('agent')">
+            <div class="preset-card-title">AI Agent Action</div>
+            <div class="preset-card-text">High-impact tool use gate</div>
+          </div>
+          <div class="preset-card" data-preset="dao" onclick="applyPreset('dao')">
+            <div class="preset-card-title">DAO Treasury</div>
+            <div class="preset-card-text">Governance disbursement</div>
           </div>
         </div>
 
@@ -629,7 +759,6 @@
               <option value="treasury_disbursement">treasury_disbursement</option>
             </select>
           </div>
-
           <div class="field">
             <label for="Source">Source System</label>
             <select id="Source">
@@ -645,7 +774,6 @@
             <label for="Priority">Risk Priority</label>
             <input id="Priority" type="text" value="High" />
           </div>
-
           <div class="field">
             <label for="EscalationTarget">Counterparty / Destination</label>
             <input id="EscalationTarget" value="wallet_0x4f3b9c2a8d1e6f5a" />
@@ -656,10 +784,19 @@
           <button class="btn-primary" id="verifyBtn">Verify Decision</button>
         </div>
 
-        <div class="small">API: POST /v1/decision/run</div>
+        <div class="small" style="margin-top:10px;">API: POST /v1/decision/run</div>
+
+        <!-- Request Payload Preview -->
+        <div class="payload-preview">
+          <div class="payload-preview-header">
+            <span class="payload-preview-label">Request Payload</span>
+            <span class="payload-preview-method">application/json</span>
+          </div>
+          <pre class="payload-pre" id="payloadPre"></pre>
+        </div>
       </div>
 
-      <!-- Right: Decision Output panel -->
+      <!-- Right: Decision Output -->
       <div class="card">
         <h2>Decision Output <span id="responseBadge"></span></h2>
 
@@ -674,7 +811,6 @@
             <div class="metric-label">Decision ID</div>
             <div id="decisionIdValue">-</div>
           </div>
-
           <div class="metric-box">
             <div class="metric-label">Latency</div>
             <div id="latencyValue">-</div>
@@ -695,16 +831,12 @@
 
         <div class="metric-box">
           <div class="metric-label">Why this decision?</div>
-          <ul id="whyList" class="proof-list">
-            <li>Waiting for verification...</li>
-          </ul>
+          <ul id="whyList" class="proof-list"><li>Waiting for verification...</li></ul>
         </div>
 
         <div class="metric-box">
           <div class="metric-label">Policy Applied</div>
-          <ul id="policyList" class="proof-list">
-            <li>Waiting for verification...</li>
-          </ul>
+          <ul id="policyList" class="proof-list"><li>Waiting for verification...</li></ul>
         </div>
 
         <div class="metric-box">
@@ -719,10 +851,61 @@
       </div>
     </div>
 
+    <!-- Request Lifecycle -->
+    <div class="lifecycle-bar">
+      <div class="lifecycle-title">Request Lifecycle</div>
+      <div class="lifecycle-steps">
+        <div class="lc-step" id="lc1">
+          <div class="lc-dot"></div>
+          <div class="lc-lbl">Request<br>prepared</div>
+        </div>
+        <div class="lc-conn"></div>
+        <div class="lc-step" id="lc2">
+          <div class="lc-dot"></div>
+          <div class="lc-lbl">API call<br>sent</div>
+        </div>
+        <div class="lc-conn"></div>
+        <div class="lc-step" id="lc3">
+          <div class="lc-dot"></div>
+          <div class="lc-lbl">Policy<br>evaluated</div>
+        </div>
+        <div class="lc-conn"></div>
+        <div class="lc-step" id="lc4">
+          <div class="lc-dot"></div>
+          <div class="lc-lbl">Proof<br>generated</div>
+        </div>
+        <div class="lc-conn"></div>
+        <div class="lc-step" id="lc5">
+          <div class="lc-dot"></div>
+          <div class="lc-lbl" id="lc5Label">Response<br>ready</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Raw JSON Response -->
+    <div class="json-response-card">
+      <div class="json-response-header">
+        <span class="json-response-title">Raw JSON Response</span>
+        <span class="json-response-badge mode-idle" id="jsonResponseBadge">Awaiting request</span>
+      </div>
+      <pre class="json-response-pre" id="jsonResponsePre">{
+  "decision_id": "&#8212;",
+  "recommendation": "&#8212;",
+  "risk_score": null,
+  "risk_level": "&#8212;",
+  "policy": "&#8212;",
+  "proof_hash": "&#8212;",
+  "verified": false,
+  "latency_ms": null
+}</pre>
+    </div>
+
     <!-- Developer Resources -->
     <div class="dev-resources">
       <div class="dev-resources-heading">Developer Resources</div>
+      <div class="dev-resources-desc">SDK, API reference, and code examples for integrating the Trust OS Decision Verification API.</div>
       <div class="dev-resource-grid">
+
         <div class="dev-resource-card">
           <div class="dev-resource-label">Install SDK</div>
           <div class="code-block">npm install @trust-os-sdk/trust-os-sdk</div>
@@ -786,6 +969,7 @@ const result = await client.verifyDecision({
   destination: "wallet_abc"
 });</div>
         </div>
+
       </div>
     </div>
 
@@ -798,30 +982,19 @@ const result = await client.verifyDecision({
       <div class="use-case-grid">
         <div class="use-case-card">
           <div class="use-case-card-title">Stablecoin Payment Verification</div>
-          <div class="use-case-card-text">
-            Verify cross-border stablecoin transfers against compliance and risk policy before on-chain execution.
-          </div>
+          <div class="use-case-card-text">Verify cross-border stablecoin transfers against compliance and risk policy before on-chain execution.</div>
         </div>
-
         <div class="use-case-card">
           <div class="use-case-card-title">AI Agent Action Verification</div>
-          <div class="use-case-card-text">
-            Gate high-impact agent tool use &#8212; database writes, API calls, code execution &#8212; with a pre-execution decision check.
-          </div>
+          <div class="use-case-card-text">Gate high-impact agent tool use &#8212; database writes, API calls, code execution &#8212; with a pre-execution decision check.</div>
         </div>
-
         <div class="use-case-card">
           <div class="use-case-card-title">DAO Treasury Verification</div>
-          <div class="use-case-card-text">
-            Validate governance parameters before treasury disbursements &#8212; quorum, timelock, multisig.
-          </div>
+          <div class="use-case-card-text">Validate governance parameters before treasury disbursements &#8212; quorum, timelock, multisig.</div>
         </div>
-
         <div class="use-case-card">
           <div class="use-case-card-title">Compliance Workflow Approval</div>
-          <div class="use-case-card-text">
-            Route decisions through policy evaluation for regulated industries: finance, healthcare, legal.
-          </div>
+          <div class="use-case-card-text">Route decisions through policy evaluation for regulated industries: finance, healthcare, legal.</div>
         </div>
       </div>
 
@@ -829,35 +1002,26 @@ const result = await client.verifyDecision({
       <div class="production-cta">
         <div class="production-cta-card">
           <div class="production-cta-label">EARLY ACCESS</div>
-
           <h2>Start Building with Trust OS</h2>
-
           <p class="production-cta-text">
             Integrate the Decision Verification API into payment infrastructure, AI agent systems, treasury platforms, and compliance workflows.
           </p>
-
           <p class="production-cta-small">
             Trust OS is in private beta. API keys are provisioned by invitation.
           </p>
-
-          <a
-            class="production-cta-button"
-            href="mailto:admin@trust-os.io"
-          >
-            Request API Access
-          </a>
-
+          <a class="production-cta-button" href="mailto:admin@trust-os.io">Request API Access</a>
           <div class="production-cta-flow">
             Typical onboarding: Intro &#8594; Sandbox API &#8594; Pilot &#8594; Production
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+  </div><!-- /wrap -->
 
   <script>
 
-let latestResult = null;
+// ── DOM refs ──────────────────────────────────────────────────
 
 const recommendationValue = document.getElementById("recommendationValue");
 const riskLevelValue      = document.getElementById("riskLevelValue");
@@ -874,8 +1038,14 @@ const proofHash           = document.getElementById("proofHash");
 const verifyBtn           = document.getElementById("verifyBtn");
 const responseBadge       = document.getElementById("responseBadge");
 const sandboxNotice       = document.getElementById("sandboxNotice");
+const statusDot           = document.getElementById("statusDot");
+const apiModeVal          = document.getElementById("apiModeVal");
+const payloadPre          = document.getElementById("payloadPre");
+const jsonResponsePre     = document.getElementById("jsonResponsePre");
+const jsonResponseBadge   = document.getElementById("jsonResponseBadge");
+const lc5Label            = document.getElementById("lc5Label");
 
-// --- Presets ---
+// ── Presets ───────────────────────────────────────────────────
 
 const presets = {
   stablecoin: {
@@ -896,7 +1066,8 @@ const presets = {
     ],
     fallbackRec:   "APPROVE",
     fallbackRisk:  "LOW",
-    fallbackScore: 0.18
+    fallbackScore: 0.18,
+    fallbackPolicy: "Stablecoin Settlement Policy v1.0"
   },
   agent: {
     useCase:     "AI Agent Action Verification",
@@ -916,7 +1087,8 @@ const presets = {
     ],
     fallbackRec:   "REVIEW",
     fallbackRisk:  "HIGH",
-    fallbackScore: 0.72
+    fallbackScore: 0.72,
+    fallbackPolicy: "Agent Action Policy v1.0"
   },
   dao: {
     useCase:     "DAO Treasury Verification",
@@ -936,7 +1108,8 @@ const presets = {
     ],
     fallbackRec:   "APPROVE",
     fallbackRisk:  "MEDIUM",
-    fallbackScore: 0.41
+    fallbackScore: 0.41,
+    fallbackPolicy: "DAO Treasury Policy v2.0"
   }
 };
 
@@ -964,17 +1137,108 @@ function applyPreset(key) {
   document.querySelectorAll(".preset-card").forEach(card => {
     card.classList.toggle("active", card.dataset.preset === key);
   });
+
+  updatePayloadPreview();
 }
 
-// --- Core helpers ---
+// ── API Status Bar ────────────────────────────────────────────
 
-function getHeaders() {
-  return { "Content-Type": "application/json" };
+function setApiMode(mode) {
+  statusDot.className = "api-status-dot";
+  if (mode === "live") {
+    statusDot.classList.add("dot-live");
+    apiModeVal.textContent  = "Live API";
+    apiModeVal.style.color  = "#4ade80";
+  } else if (mode === "sandbox") {
+    statusDot.classList.add("dot-sandbox");
+    apiModeVal.textContent  = "Sandbox Preview";
+    apiModeVal.style.color  = "#fbbf24";
+  } else if (mode === "connecting") {
+    statusDot.classList.add("dot-connecting");
+    apiModeVal.textContent  = "Connecting...";
+    apiModeVal.style.color  = "#93c5fd";
+  } else {
+    apiModeVal.textContent  = "Ready";
+    apiModeVal.style.color  = "#cbd5e1";
+  }
 }
 
-function setStatus(text) {
-  statusBox.textContent = text;
+// ── Lifecycle Steps ───────────────────────────────────────────
+
+function resetLifecycle() {
+  for (let i = 1; i <= 5; i++) {
+    const step = document.getElementById(`lc${i}`);
+    if (!step) continue;
+    step.querySelector(".lc-dot").className = "lc-dot";
+    step.querySelector(".lc-lbl").className = "lc-lbl";
+  }
+  document.querySelectorAll(".lc-conn").forEach(c => { c.className = "lc-conn"; });
+  lc5Label.innerHTML = "Response<br>ready";
 }
+
+function setLifecycle(upTo, finalMode) {
+  const conns = [...document.querySelectorAll(".lc-conn")];
+  for (let i = 1; i <= 5; i++) {
+    const step = document.getElementById(`lc${i}`);
+    if (!step) continue;
+    const dot = step.querySelector(".lc-dot");
+    const lbl = step.querySelector(".lc-lbl");
+    dot.className = "lc-dot";
+    lbl.className = "lc-lbl";
+    if (i < upTo) {
+      dot.classList.add("lc-done");
+      lbl.classList.add("lc-done");
+    } else if (i === upTo) {
+      const m = finalMode || "lc-active";
+      dot.classList.add(m);
+      lbl.classList.add(m);
+    }
+  }
+  conns.forEach((c, idx) => {
+    c.className = "lc-conn";
+    if (idx < upTo - 2) {
+      c.classList.add("lc-done");
+    } else if (idx === upTo - 2 && (finalMode === "lc-done" || finalMode === "lc-sandbox")) {
+      c.classList.add(finalMode === "lc-sandbox" ? "lc-sandbox" : "lc-done");
+    }
+  });
+}
+
+// ── Payload Preview ───────────────────────────────────────────
+
+function updatePayloadPreview() {
+  const action   = document.getElementById("Request").value;
+  const source   = document.getElementById("Source").value;
+  const dest     = document.getElementById("EscalationTarget").value.trim();
+  const priority = document.getElementById("Priority").value;
+
+  const obj = {
+    action:      action,
+    amount:      50000,
+    currency:    "USDC",
+    destination: dest,
+    source:      source,
+    priority:    priority
+  };
+
+  payloadPre.textContent = JSON.stringify(obj, null, 2);
+}
+
+// ── Raw JSON Response ─────────────────────────────────────────
+
+function setJsonResponse(obj, mode) {
+  jsonResponsePre.textContent = JSON.stringify(obj, null, 2);
+  jsonResponseBadge.className = `json-response-badge mode-${mode}`;
+  if (mode === "live")    jsonResponseBadge.textContent = "Live response";
+  else if (mode === "sandbox") jsonResponseBadge.textContent = "Sandbox";
+  else                    jsonResponseBadge.textContent = "Awaiting request";
+}
+
+// ── Core helpers ──────────────────────────────────────────────
+
+function getHeaders() { return { "Content-Type": "application/json" }; }
+
+function setStatus(text) { statusBox.textContent = text; }
 
 function setBadge(level) {
   riskBadge.innerHTML = "";
@@ -1013,13 +1277,14 @@ function getPayload() {
   };
 }
 
-// --- Main verification flow ---
+// ── Main Verification Flow ────────────────────────────────────
 
 async function runVerification() {
   try {
+    // --- Init state ---
     verifyBtn.disabled    = true;
-    verifyBtn.textContent = "Verifying...";
-    verifyBtn.className   = "btn-primary";
+    verifyBtn.textContent = "Sending request...";
+    verifyBtn.className   = "btn-sending";
 
     recommendationValue.textContent = "-";
     riskLevelValue.textContent      = "-";
@@ -1038,14 +1303,20 @@ async function runVerification() {
     policyList.innerHTML = `<li class="loading-pulse">Applying policy rules...</li>`;
 
     setStatus("Running pre-execution verification...");
+    setApiMode("connecting");
+    resetLifecycle();
 
     const startedAt = performance.now();
     const payload   = getPayload();
 
-    setTimeout(() => { setStatus("Scoring decision risk..."); }, 250);
-    setTimeout(() => { setStatus("Generating verification proof..."); }, 500);
+    // Animate lifecycle steps
+    setLifecycle(1, "lc-done");
+    setTimeout(() => { setLifecycle(2, "lc-active"); setStatus("API call sent..."); }, 120);
+    setTimeout(() => { setLifecycle(3, "lc-active"); setStatus("Scoring decision risk..."); }, 350);
+    setTimeout(() => { setLifecycle(4, "lc-active"); setStatus("Generating verification proof..."); }, 600);
 
-    const res = await fetch("/v1/decision/run", {
+    // --- API Call ---
+    const res  = await fetch("/v1/decision/run", {
       method:  "POST",
       headers: getHeaders(),
       body:    JSON.stringify(payload)
@@ -1057,34 +1328,25 @@ async function runVerification() {
       throw new Error(data.error || "Verification unavailable");
     }
 
-    latestResult = data;
-
+    // --- Live success ---
     const score  = data.score  || {};
     const log    = data.log    || {};
     const verify = data.verify || {};
 
     const clientLatency = Math.round(performance.now() - startedAt);
-    const finalLatency  = `Round trip: ${clientLatency}ms`;
-
-    const decisionId =
-      data.decision_id   ||
-      score.decision_id  ||
-      log.decision_id    ||
-      verify.decision_id ||
-      "-";
+    const decisionId    =
+      data.decision_id   || score.decision_id  ||
+      log.decision_id    || verify.decision_id || "-";
 
     const proof =
-      verify.ledger_hash ||
-      verify.proof_hash  ||
-      log.hash           ||
-      log.proof_hash     ||
-      data.proof_hash    ||
-      "-";
+      verify.ledger_hash || verify.proof_hash  ||
+      log.hash           || log.proof_hash     ||
+      data.proof_hash    || "-";
 
     const apiRiskScore = data.risk_score || score.risk_score;
 
     decisionIdValue.textContent     = decisionId;
-    latencyValue.textContent        = finalLatency;
+    latencyValue.textContent        = `Round trip: ${clientLatency}ms`;
     recommendationValue.textContent = score.recommendation || data.recommendation || "-";
     riskLevelValue.textContent      = score.risk_level     || data.risk_level     || "-";
 
@@ -1098,14 +1360,31 @@ async function runVerification() {
     responseBadge.innerHTML     = '<span class="response-badge response-badge-live">Live API response</span>';
     sandboxNotice.style.display = "none";
 
-    proofStatus.innerHTML = `<span class="proof-ok">Verified ✅</span>`;
+    proofStatus.innerHTML = `<span class="proof-ok">Verified &#10003;</span>`;
     proofHash.textContent = proof;
 
     setStatus(`Verification complete. Decision ID: ${decisionId}`);
-    verifyBtn.textContent = "Verified ✅";
+    setApiMode("live");
+    lc5Label.innerHTML = "Live response<br>ready";
+    setLifecycle(5, "lc-done");
+
+    setJsonResponse({
+      decision_id:    decisionId,
+      recommendation: score.recommendation || data.recommendation || "-",
+      risk_score:     apiRiskScore !== undefined ? apiRiskScore : null,
+      risk_level:     score.risk_level || data.risk_level || "-",
+      policy:         data.policy || "-",
+      proof_hash:     proof,
+      verified:       true,
+      latency_ms:     data.latency_ms || clientLatency
+    }, "live");
+
+    verifyBtn.textContent = "Live response &#10003;";
     verifyBtn.className   = "btn-done";
 
   } catch (error) {
+
+    // --- Sandbox fallback ---
     const p         = presets[activePreset] || presets.stablecoin;
     const sandboxId = "dec_sandbox_" + Math.random().toString(36).slice(2, 8);
     const h1        = Math.random().toString(16).slice(2, 6);
@@ -1125,35 +1404,66 @@ async function runVerification() {
     whyList.innerHTML    = p.why.map(w   => `<li>${w}</li>`).join("");
     policyList.innerHTML = p.policy.map(pol => `<li>${pol}</li>`).join("");
 
-    proofStatus.innerHTML = `<span class="proof-ok">Sandbox verification ✓</span>`;
+    proofStatus.innerHTML = `<span class="proof-ok">Sandbox verification &#10003;</span>`;
     proofHash.textContent = `SHA-256: 0x${h1}...${h2}`;
 
     setStatus(`Sandbox response. Decision ID: ${sandboxId}`);
-    verifyBtn.textContent = "Sandbox ✓";
-    verifyBtn.className   = "btn-done";
+    setApiMode("sandbox");
+    lc5Label.innerHTML = "Sandbox response<br>ready";
+    setLifecycle(5, "lc-sandbox");
+
+    setJsonResponse({
+      decision_id:    sandboxId,
+      recommendation: p.fallbackRec,
+      risk_score:     p.fallbackScore,
+      risk_level:     p.fallbackRisk,
+      policy:         p.fallbackPolicy,
+      proof_hash:     `SHA-256: 0x${h1}...${h2}`,
+      verified:       false,
+      latency_ms:     sandboxMs,
+      mode:           "sandbox"
+    }, "sandbox");
+
+    verifyBtn.textContent = "Sandbox response &#10003;";
+    verifyBtn.className   = "btn-sandbox";
 
   } finally {
     setTimeout(() => {
       verifyBtn.disabled    = false;
-      verifyBtn.textContent = "Verify Decision";
+      verifyBtn.innerHTML   = "Verify Decision";
       verifyBtn.className   = "btn-primary";
-    }, 1500);
+    }, 1800);
   }
 }
 
 verifyBtn.addEventListener("click", runVerification);
+
+// ── Copy Proof Hash ───────────────────────────────────────────
 
 copyProofBtn.addEventListener("click", async () => {
   const text = proofHash.textContent;
   if (!text || text.includes("Proof hash:") || text === "-") return;
   try {
     await navigator.clipboard.writeText(text);
-    copyProofBtn.textContent = "Copied ✅";
+    copyProofBtn.textContent = "Copied &#10003;";
     setTimeout(() => { copyProofBtn.textContent = "Copy Proof Hash"; }, 1200);
-  } catch (error) {
+  } catch {
     copyProofBtn.textContent = "Copy failed";
   }
 });
+
+// ── Live Payload Preview ──────────────────────────────────────
+
+["Request", "Source"].forEach(id => {
+  document.getElementById(id).addEventListener("change", updatePayloadPreview);
+});
+["Priority", "EscalationTarget"].forEach(id => {
+  document.getElementById(id).addEventListener("input", updatePayloadPreview);
+});
+
+// ── Init ──────────────────────────────────────────────────────
+
+updatePayloadPreview();
 
   </script>
 </body>
