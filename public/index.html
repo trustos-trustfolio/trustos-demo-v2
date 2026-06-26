@@ -292,6 +292,45 @@
       margin-bottom: 8px;
     }
 
+    /* Response mode badge */
+    .response-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+
+    .response-badge-live {
+      background: rgba(34,197,94,0.15);
+      color: #4ade80;
+    }
+
+    .response-badge-sandbox {
+      background: rgba(245,158,11,0.15);
+      color: #fbbf24;
+    }
+
+    /* Sandbox notice */
+    .sandbox-notice {
+      margin-bottom: 14px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(245,158,11,0.06);
+      border: 1px solid rgba(245,158,11,0.22);
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+
+    .sandbox-notice strong {
+      color: #fbbf24;
+      display: block;
+      margin-bottom: 3px;
+    }
+
     /* Developer Resources */
     .dev-resources {
       margin-top: 48px;
@@ -319,6 +358,14 @@
       background: #10182d;
     }
 
+    .dev-resource-card-wide {
+      border: 1px solid #273556;
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #10182d;
+      grid-column: 1 / -1;
+    }
+
     .dev-resource-label {
       font-size: 11px;
       color: #67e8f9;
@@ -337,6 +384,20 @@
       font-size: 12px;
       color: #dbeafe;
       word-break: break-all;
+    }
+
+    .code-block-multi {
+      background: #09101f;
+      border: 1px solid #22314e;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: monospace;
+      font-size: 11.5px;
+      color: #dbeafe;
+      white-space: pre;
+      overflow-x: auto;
+      line-height: 1.6;
+      margin-top: 6px;
     }
 
     .dev-resource-link {
@@ -517,7 +578,7 @@
   <div class="wrap">
     <div class="top-link">
       <a href="https://ops.trust-os.io" target="_blank" rel="noopener">Ops Demo ↗</a>
-      <a href="https://trust-os.io/" target="_blank">← Trust OS</a>
+      <a href="https://trust-os.io/" target="_blank">&#8592; Trust OS</a>
     </div>
 
     <div class="hero">
@@ -526,7 +587,9 @@
       <p class="subtitle">
         Test the Decision Verification API with live requests, structured inputs, and verifiable responses.
       </p>
-      <p class="small" style="margin-top:8px;">One API for verifying high-impact decisions before execution.</p>
+      <p class="small" style="margin-top:8px;">
+        Live API when credentials are configured &middot; Sandbox response when running in preview mode &middot; Same response shape for integration planning
+      </p>
     </div>
 
     <div class="grid">
@@ -598,7 +661,13 @@
 
       <!-- Right: Decision Output panel -->
       <div class="card">
-        <h2>Decision Output</h2>
+        <h2>Decision Output <span id="responseBadge"></span></h2>
+
+        <div id="sandboxNotice" class="sandbox-notice" style="display:none">
+          <strong>Sandbox response</strong>
+          API connection is not available in this preview environment.
+          This example shows the response shape developers can expect from the Trust OS Decision Verification API.
+        </div>
 
         <div class="meta-grid">
           <div class="metric-box">
@@ -621,6 +690,7 @@
           <div class="metric-label">Risk Level</div>
           <div id="riskLevelValue">-</div>
           <div id="riskBadge"></div>
+          <div id="riskScoreValue" style="font-size:12px; color:#94a3b8; margin-top:4px;"></div>
         </div>
 
         <div class="metric-box">
@@ -641,7 +711,7 @@
           <div class="metric-label">Verification Proof</div>
           <div id="proofStatus">Not verified yet</div>
           <div class="small">SHA-256 verification hash</div>
-          <div class="hash-value" id="proofHash">Proof hash: —</div>
+          <div class="hash-value" id="proofHash">Proof hash: &#8212;</div>
           <button class="copy-button" id="copyProofBtn" type="button">Copy Proof Hash</button>
         </div>
 
@@ -662,30 +732,59 @@
           <div class="dev-resource-label">Production API</div>
           <div style="margin-top:6px; font-size:12px; color:#94a3b8; font-family:monospace;">POST /v1/decision/verify</div>
           <a class="dev-resource-link" href="https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev" target="_blank" rel="noopener">
-            trustos-core-gateway-v2 ↗
+            trustos-core-gateway-v2 &#8599;
           </a>
         </div>
 
         <div class="dev-resource-card">
           <div class="dev-resource-label">GitHub</div>
           <a class="dev-resource-link" href="https://github.com/trustos-trustfolio/trustos-sdk" target="_blank" rel="noopener">
-            trustos-trustfolio/trustos-sdk ↗
+            trustos-trustfolio/trustos-sdk &#8599;
           </a>
         </div>
 
         <div class="dev-resource-card">
           <div class="dev-resource-label">npm</div>
           <a class="dev-resource-link" href="https://www.npmjs.com/package/@trust-os-sdk/trust-os-sdk" target="_blank" rel="noopener">
-            @trust-os-sdk/trust-os-sdk ↗
+            @trust-os-sdk/trust-os-sdk &#8599;
           </a>
         </div>
 
         <div class="dev-resource-card">
           <div class="dev-resource-label">Operational Demo</div>
           <a class="dev-resource-link" href="https://ops.trust-os.io" target="_blank" rel="noopener">
-            ops.trust-os.io ↗
+            ops.trust-os.io &#8599;
           </a>
           <div style="font-size:11px; color:#475569; margin-top:4px;">Financial Decision Verification</div>
+        </div>
+
+        <div class="dev-resource-card-wide">
+          <div class="dev-resource-label">curl Example</div>
+<div class="code-block-multi">curl -X POST https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: YOUR_API_KEY" \
+  -d '{
+    "action": "stablecoin_transfer",
+    "amount": 50000,
+    "currency": "USDC",
+    "destination": "wallet_0x4f3b9c2a8d1e6f5a"
+  }'</div>
+        </div>
+
+        <div class="dev-resource-card-wide">
+          <div class="dev-resource-label">SDK Example</div>
+<div class="code-block-multi">const { TrustOSClient } = require("@trust-os-sdk/trust-os-sdk");
+
+const client = new TrustOSClient({
+  apiKey: process.env.TRUST_OS_API_KEY
+});
+
+const result = await client.verifyDecision({
+  action: "stablecoin_transfer",
+  amount: 50000,
+  currency: "USDC",
+  destination: "wallet_abc"
+});</div>
         </div>
       </div>
     </div>
@@ -694,7 +793,7 @@
     <div class="use-cases">
       <p style="color:#67e8f9; font-size:12px; margin-bottom:6px;">One API, multiple verification workflows</p>
       <h2 style="margin-top:8px; font-size:26px;">Use Cases</h2>
-      <p style="color:#94a3b8; margin-bottom:20px;">Verify high-impact decisions before execution — across payments, AI agents, and governance.</p>
+      <p style="color:#94a3b8; margin-bottom:20px;">Verify high-impact decisions before execution &#8212; across payments, AI agents, and governance.</p>
 
       <div class="use-case-grid">
         <div class="use-case-card">
@@ -707,14 +806,14 @@
         <div class="use-case-card">
           <div class="use-case-card-title">AI Agent Action Verification</div>
           <div class="use-case-card-text">
-            Gate high-impact agent tool use — database writes, API calls, code execution — with a pre-execution decision check.
+            Gate high-impact agent tool use &#8212; database writes, API calls, code execution &#8212; with a pre-execution decision check.
           </div>
         </div>
 
         <div class="use-case-card">
           <div class="use-case-card-title">DAO Treasury Verification</div>
           <div class="use-case-card-text">
-            Validate governance parameters before treasury disbursements — quorum, timelock, multisig.
+            Validate governance parameters before treasury disbursements &#8212; quorum, timelock, multisig.
           </div>
         </div>
 
@@ -749,7 +848,7 @@
           </a>
 
           <div class="production-cta-flow">
-            Typical onboarding: Intro → Sandbox API → Pilot → Production
+            Typical onboarding: Intro &#8594; Sandbox API &#8594; Pilot &#8594; Production
           </div>
         </div>
       </div>
@@ -763,6 +862,7 @@ let latestResult = null;
 const recommendationValue = document.getElementById("recommendationValue");
 const riskLevelValue      = document.getElementById("riskLevelValue");
 const riskBadge           = document.getElementById("riskBadge");
+const riskScoreValue      = document.getElementById("riskScoreValue");
 const statusBox           = document.getElementById("statusBox");
 const decisionIdValue     = document.getElementById("decisionIdValue");
 const latencyValue        = document.getElementById("latencyValue");
@@ -772,6 +872,8 @@ const policyList          = document.getElementById("policyList");
 const proofStatus         = document.getElementById("proofStatus");
 const proofHash           = document.getElementById("proofHash");
 const verifyBtn           = document.getElementById("verifyBtn");
+const responseBadge       = document.getElementById("responseBadge");
+const sandboxNotice       = document.getElementById("sandboxNotice");
 
 // --- Presets ---
 
@@ -792,8 +894,9 @@ const presets = {
       "AML Compliance Rule",
       "High-value Transfer Policy"
     ],
-    fallbackRec:  "APPROVE",
-    fallbackRisk: "LOW"
+    fallbackRec:   "APPROVE",
+    fallbackRisk:  "LOW",
+    fallbackScore: 0.18
   },
   agent: {
     useCase:     "AI Agent Action Verification",
@@ -811,8 +914,9 @@ const presets = {
       "Irreversible Action Review Rule",
       "High-Impact Execution Policy"
     ],
-    fallbackRec:  "REVIEW",
-    fallbackRisk: "HIGH"
+    fallbackRec:   "REVIEW",
+    fallbackRisk:  "HIGH",
+    fallbackScore: 0.72
   },
   dao: {
     useCase:     "DAO Treasury Verification",
@@ -830,8 +934,9 @@ const presets = {
       "Governance Quorum Rule",
       "Timelock Compliance Policy"
     ],
-    fallbackRec:  "APPROVE",
-    fallbackRisk: "MEDIUM"
+    fallbackRec:   "APPROVE",
+    fallbackRisk:  "MEDIUM",
+    fallbackScore: 0.41
   }
 };
 
@@ -842,8 +947,8 @@ function applyPreset(key) {
   if (!p) return;
   activePreset = key;
 
-  document.getElementById("user_id").value        = p.useCase;
-  document.getElementById("Priority").value       = p.priority;
+  document.getElementById("user_id").value          = p.useCase;
+  document.getElementById("Priority").value         = p.priority;
   document.getElementById("EscalationTarget").value = p.destination;
 
   const reqSel = document.getElementById("Request");
@@ -876,7 +981,7 @@ function setBadge(level) {
   if (!level) return;
   const span = document.createElement("span");
   span.className = "badge";
-  if (level === "LOW")        span.classList.add("badge-low");
+  if (level === "LOW")         span.classList.add("badge-low");
   else if (level === "MEDIUM") span.classList.add("badge-medium");
   else                         span.classList.add("badge-high");
   span.textContent = level;
@@ -885,7 +990,7 @@ function setBadge(level) {
 
 function setWhyAndPolicy() {
   const p = presets[activePreset] || presets.stablecoin;
-  whyList.innerHTML    = p.why.map(w  => `<li>${w}</li>`).join("");
+  whyList.innerHTML    = p.why.map(w   => `<li>${w}</li>`).join("");
   policyList.innerHTML = p.policy.map(pol => `<li>${pol}</li>`).join("");
 }
 
@@ -912,18 +1017,21 @@ function getPayload() {
 
 async function runVerification() {
   try {
-    verifyBtn.disabled   = true;
+    verifyBtn.disabled    = true;
     verifyBtn.textContent = "Verifying...";
-    verifyBtn.className  = "btn-primary";
+    verifyBtn.className   = "btn-primary";
 
     recommendationValue.textContent = "-";
     riskLevelValue.textContent      = "-";
+    riskScoreValue.textContent      = "";
     decisionIdValue.textContent     = "-";
     latencyValue.textContent        = "-";
     riskBadge.innerHTML             = "";
+    responseBadge.innerHTML         = "";
+    sandboxNotice.style.display     = "none";
 
-    proofStatus.innerHTML   = `<span class="proof-wait loading-pulse">Preparing verification...</span>`;
-    proofHash.textContent   = "Preparing verification proof...";
+    proofStatus.innerHTML    = `<span class="proof-wait loading-pulse">Preparing verification...</span>`;
+    proofHash.textContent    = "Preparing verification proof...";
     copyProofBtn.textContent = "Copy Proof Hash";
 
     whyList.innerHTML    = `<li class="loading-pulse">Evaluating decision...</li>`;
@@ -956,13 +1064,12 @@ async function runVerification() {
     const verify = data.verify || {};
 
     const clientLatency = Math.round(performance.now() - startedAt);
-    const serverLatency = data.latency_ms || score.latency_ms || log.latency_ms || verify.latency_ms;
     const finalLatency  = `Round trip: ${clientLatency}ms`;
 
     const decisionId =
-      data.decision_id  ||
-      score.decision_id ||
-      log.decision_id   ||
+      data.decision_id   ||
+      score.decision_id  ||
+      log.decision_id    ||
       verify.decision_id ||
       "-";
 
@@ -974,14 +1081,22 @@ async function runVerification() {
       data.proof_hash    ||
       "-";
 
-    decisionIdValue.textContent = decisionId;
-    latencyValue.textContent    = finalLatency;
+    const apiRiskScore = data.risk_score || score.risk_score;
 
+    decisionIdValue.textContent     = decisionId;
+    latencyValue.textContent        = finalLatency;
     recommendationValue.textContent = score.recommendation || data.recommendation || "-";
     riskLevelValue.textContent      = score.risk_level     || data.risk_level     || "-";
 
+    if (apiRiskScore !== undefined) {
+      riskScoreValue.textContent = `risk_score: ${apiRiskScore}`;
+    }
+
     setBadge(score.risk_level || data.risk_level);
     setWhyAndPolicy();
+
+    responseBadge.innerHTML     = '<span class="response-badge response-badge-live">Live API response</span>';
+    sandboxNotice.style.display = "none";
 
     proofStatus.innerHTML = `<span class="proof-ok">Verified ✅</span>`;
     proofHash.textContent = proof;
@@ -991,25 +1106,30 @@ async function runVerification() {
     verifyBtn.className   = "btn-done";
 
   } catch (error) {
-    const p = presets[activePreset] || presets.stablecoin;
-    const fallbackDecisionId = "demo_" + Math.random().toString(16).slice(2, 10);
-    const fallbackHash       = "a84f"  + Math.random().toString(16).slice(2, 18) + "3b29";
+    const p         = presets[activePreset] || presets.stablecoin;
+    const sandboxId = "dec_sandbox_" + Math.random().toString(36).slice(2, 8);
+    const h1        = Math.random().toString(16).slice(2, 6);
+    const h2        = Math.random().toString(16).slice(2, 6);
+    const sandboxMs = Math.floor(400 + Math.random() * 200);
 
-    decisionIdValue.textContent = fallbackDecisionId;
-    latencyValue.textContent    = "Round trip: 842ms";
+    responseBadge.innerHTML     = '<span class="response-badge response-badge-sandbox">Sandbox response</span>';
+    sandboxNotice.style.display = "";
 
+    decisionIdValue.textContent     = sandboxId;
+    latencyValue.textContent        = `Round trip: ${sandboxMs}ms`;
     recommendationValue.textContent = p.fallbackRec;
     riskLevelValue.textContent      = p.fallbackRisk;
+    riskScoreValue.textContent      = `risk_score: ${p.fallbackScore}`;
     setBadge(p.fallbackRisk);
 
     whyList.innerHTML    = p.why.map(w   => `<li>${w}</li>`).join("");
     policyList.innerHTML = p.policy.map(pol => `<li>${pol}</li>`).join("");
 
-    proofStatus.innerHTML = `<span class="proof-ok">Verification Complete ✓</span>`;
-    proofHash.textContent = `SHA-256 Verification Hash: ${fallbackHash}`;
+    proofStatus.innerHTML = `<span class="proof-ok">Sandbox verification ✓</span>`;
+    proofHash.textContent = `SHA-256: 0x${h1}...${h2}`;
 
-    setStatus(`Verification complete. Decision ID: ${fallbackDecisionId}`);
-    verifyBtn.textContent = "Verified ✓";
+    setStatus(`Sandbox response. Decision ID: ${sandboxId}`);
+    verifyBtn.textContent = "Sandbox ✓";
     verifyBtn.className   = "btn-done";
 
   } finally {
@@ -1025,7 +1145,7 @@ verifyBtn.addEventListener("click", runVerification);
 
 copyProofBtn.addEventListener("click", async () => {
   const text = proofHash.textContent;
-  if (!text || text.includes("Proof hash: —") || text === "-") return;
+  if (!text || text.includes("Proof hash:") || text === "-") return;
   try {
     await navigator.clipboard.writeText(text);
     copyProofBtn.textContent = "Copied ✅";
