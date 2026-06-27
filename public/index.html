@@ -884,7 +884,133 @@
       .api-status-bar { gap: 8px; }
       .api-status-sep { display: none; }
       .response-summary { grid-template-columns: repeat(3, 1fr); }
+      .ms-item { min-width: 90px; }
     }
+
+    /* ── Headers Preview ── */
+    .headers-preview {
+      margin-top: 12px;
+      border: 1px solid #1e2d4a;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .headers-preview-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 12px;
+      background: #0e1628;
+      border-bottom: 1px solid #1e2d4a;
+    }
+    .headers-preview-label { font-size: 10px; color: #67e8f9; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 12px;
+      border-bottom: 1px solid #0f1825;
+      font-family: monospace;
+      font-size: 11px;
+      background: #09101f;
+    }
+    .header-row:last-child { border-bottom: none; }
+    .header-key { color: #93c5fd; }
+    .header-val { color: #dbeafe; }
+
+    /* ── Action buttons ── */
+    .action-btns { display: flex; gap: 7px; margin-top: 10px; flex-wrap: wrap; }
+    .action-btn {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 7px;
+      border: 1px solid #273556;
+      background: #0f1a30;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .action-btn:hover  { background: #1e2d4a; color: #fff; }
+    .action-btn.copied { background: rgba(34,197,94,0.12); color: #4ade80; border-color: rgba(34,197,94,0.3); }
+
+    /* ── Empty State ── */
+    .empty-state { padding: 28px 16px; text-align: center; }
+    .empty-state-icon { font-size: 26px; opacity: 0.3; margin-bottom: 10px; }
+    .empty-state-text { color: #334155; font-size: 13px; line-height: 1.6; }
+
+    /* ── Execution Timeline ── */
+    .exec-timeline {
+      margin-top: 14px;
+      background: #0e1628;
+      border: 1px solid #1e2d4a;
+      border-radius: 14px;
+      padding: 14px 18px;
+    }
+    .exec-timeline-title {
+      font-size: 10px; color: #67e8f9; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.10em; margin-bottom: 12px;
+    }
+    .exec-step {
+      display: flex; align-items: center; gap: 10px;
+      padding: 5px 0; border-bottom: 1px solid #0f1825; font-size: 11px;
+    }
+    .exec-step:last-child { border-bottom: none; }
+    .exec-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #1e3a5f; border: 1px solid #334155; flex-shrink: 0;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .exec-dot.es-done    { background: #4ade80; border-color: #4ade80; }
+    .exec-dot.es-sandbox { background: #fbbf24; border-color: #fbbf24; }
+    .exec-dot.es-active  { background: #3b82f6; border-color: #3b82f6; animation: lcPulse 1s ease-in-out infinite; }
+    .exec-event { flex: 1; color: #334155; font-family: monospace; }
+    .exec-event.es-done    { color: #94a3b8; }
+    .exec-event.es-sandbox { color: #a07830; }
+    .exec-ts { color: #1e2d4a; font-family: monospace; font-size: 10px; min-width: 80px; text-align: right; }
+    .exec-ts.es-done    { color: #475569; }
+    .exec-ts.es-sandbox { color: #6b5020; }
+
+    /* ── Latency Bar ── */
+    .latency-bar-section {
+      margin-top: 14px; background: #0e1628;
+      border: 1px solid #1e2d4a; border-radius: 14px; padding: 14px 18px;
+    }
+    .latency-bar-title {
+      font-size: 10px; color: #67e8f9; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.10em; margin-bottom: 10px;
+    }
+    .latency-track {
+      height: 8px; border-radius: 999px; background: #0d1525;
+      border: 1px solid #1e2d4a; display: flex; overflow: hidden; margin-bottom: 10px;
+    }
+    .latency-seg { height: 100%; transition: width 0.5s ease; }
+    .latency-seg.ls-network { background: #3b82f6; }
+    .latency-seg.ls-policy  { background: #8b5cf6; }
+    .latency-seg.ls-proof   { background: #06b6d4; }
+    .latency-seg.ls-render  { background: #10b981; }
+    .latency-legend { display: flex; gap: 14px; flex-wrap: wrap; }
+    .ll-item { display: flex; align-items: center; gap: 5px; font-size: 10px; }
+    .ll-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .ll-label { color: #475569; font-weight: 700; }
+    .ll-val   { color: #94a3b8; font-family: monospace; }
+
+    /* ── Enhanced Metadata Strip ── */
+    .meta-strip {
+      display: flex; flex-wrap: wrap; margin-top: 14px;
+      border: 1px solid #1e2d4a; border-radius: 12px; overflow: hidden; background: #0d1525;
+    }
+    .ms-item {
+      padding: 9px 14px; border-right: 1px solid #1e2d4a;
+      border-bottom: 1px solid #1e2d4a; flex: 1; min-width: 110px;
+    }
+    .ms-item:last-child { border-right: none; }
+    .ms-label { font-size: 10px; color: #334155; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .ms-value { font-size: 11px; font-weight: 700; color: #475569; font-family: monospace; word-break: break-all; }
+    .ms-value.ms-live    { color: #4ade80; }
+    .ms-value.ms-sandbox { color: #fbbf24; }
+    .ms-value.ms-approve { color: #4ade80; }
+    .ms-value.ms-review  { color: #fbbf24; }
+    .ms-value.ms-deny    { color: #f87171; }
   </style>
 </head>
 
@@ -954,6 +1080,11 @@
       <div class="api-status-item">
         <span class="api-status-key">Response Shape</span>
         <span class="api-status-val">Stable</span>
+      </div>
+      <span class="api-status-sep">&#183;</span>
+      <div class="api-status-item">
+        <span class="api-status-key">Request ID</span>
+        <span class="api-status-val api-mono" id="statusReqId">&#8212;</span>
       </div>
     </div>
 
@@ -1040,6 +1171,28 @@
           </div>
           <pre class="payload-pre" id="payloadPre"></pre>
         </div>
+
+        <!-- Headers Preview -->
+        <div class="headers-preview">
+          <div class="headers-preview-hdr">
+            <span class="headers-preview-label">Request Headers</span>
+            <button class="copy-curl-btn" id="copyHeadersBtn" type="button">Copy Headers</button>
+          </div>
+          <div class="header-row">
+            <span class="header-key">Content-Type</span>
+            <span class="header-val">application/json</span>
+          </div>
+          <div class="header-row">
+            <span class="header-key">x-api-key</span>
+            <span class="header-val">YOUR_API_KEY</span>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-btns">
+          <button class="action-btn" id="copyFullReqBtn" type="button">Copy Full Request</button>
+          <button class="action-btn" id="copyIntegrationBtn" type="button">Copy Integration Pack</button>
+        </div>
       </div>
 
       <!-- Right: Decision Output -->
@@ -1052,6 +1205,13 @@
           This example shows the response shape developers can expect from the Trust OS Decision Verification API.
         </div>
 
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state">
+          <div class="empty-state-icon">&#9654;</div>
+          <div class="empty-state-text">Send a request to see a verified decision response.</div>
+        </div>
+
+        <div id="outputContent" style="display:none">
         <div class="meta-grid">
           <div class="metric-box">
             <div class="metric-label">Decision ID</div>
@@ -1094,6 +1254,7 @@
         </div>
 
         <div class="status" id="statusBox">Waiting for input...</div>
+        </div><!-- /outputContent -->
       </div>
     </div>
 
@@ -1128,6 +1289,53 @@
       </div>
     </div>
 
+    <!-- Execution Timeline -->
+    <div class="exec-timeline">
+      <div class="exec-timeline-title">Execution Timeline</div>
+      <div class="exec-step" id="et1">
+        <div class="exec-dot"></div>
+        <span class="exec-event">request.created</span>
+        <span class="exec-ts" id="et1ts">—</span>
+      </div>
+      <div class="exec-step" id="et2">
+        <div class="exec-dot"></div>
+        <span class="exec-event">request.sent</span>
+        <span class="exec-ts" id="et2ts">—</span>
+      </div>
+      <div class="exec-step" id="et3">
+        <div class="exec-dot"></div>
+        <span class="exec-event">policy.evaluated</span>
+        <span class="exec-ts" id="et3ts">—</span>
+      </div>
+      <div class="exec-step" id="et4">
+        <div class="exec-dot"></div>
+        <span class="exec-event">proof.generated</span>
+        <span class="exec-ts" id="et4ts">—</span>
+      </div>
+      <div class="exec-step" id="et5">
+        <div class="exec-dot"></div>
+        <span class="exec-event" id="et5event">response.ready</span>
+        <span class="exec-ts" id="et5ts">—</span>
+      </div>
+    </div>
+
+    <!-- Latency Bar -->
+    <div class="latency-bar-section">
+      <div class="latency-bar-title">Latency Breakdown</div>
+      <div class="latency-track">
+        <div class="latency-seg ls-network" id="lsNetwork" style="width:0%"></div>
+        <div class="latency-seg ls-policy"  id="lsPolicy"  style="width:0%"></div>
+        <div class="latency-seg ls-proof"   id="lsProof"   style="width:0%"></div>
+        <div class="latency-seg ls-render"  id="lsRender"  style="width:0%"></div>
+      </div>
+      <div class="latency-legend">
+        <div class="ll-item"><div class="ll-dot" style="background:#3b82f6"></div><span class="ll-label">Network</span><span class="ll-val" id="llNetwork">—</span></div>
+        <div class="ll-item"><div class="ll-dot" style="background:#8b5cf6"></div><span class="ll-label">Policy</span><span class="ll-val" id="llPolicy">—</span></div>
+        <div class="ll-item"><div class="ll-dot" style="background:#06b6d4"></div><span class="ll-label">Proof</span><span class="ll-val" id="llProof">—</span></div>
+        <div class="ll-item"><div class="ll-dot" style="background:#10b981"></div><span class="ll-label">Render</span><span class="ll-val" id="llRender">—</span></div>
+      </div>
+    </div>
+
     <!-- Response Summary Strip -->
     <div class="response-summary">
       <div class="rs-item">
@@ -1152,15 +1360,32 @@
       </div>
     </div>
 
-    <!-- Response Time Mini Strip -->
-    <div class="rt-strip">
-      <div class="rt-item"><span class="rt-label">API Latency</span><span class="rt-value" id="rtApiLatency">—</span></div>
-      <span class="rt-sep">·</span>
-      <div class="rt-item"><span class="rt-label">Proxy Latency</span><span class="rt-value" id="rtProxyLatency">—</span></div>
-      <span class="rt-sep">·</span>
-      <div class="rt-item"><span class="rt-label">Mode</span><span class="rt-value" id="rtMode">—</span></div>
-      <span class="rt-sep">·</span>
-      <div class="rt-item"><span class="rt-label">Last Request</span><span class="rt-value" id="rtLastRequest">—</span></div>
+    <!-- Enhanced Metadata Strip -->
+    <div class="meta-strip">
+      <div class="ms-item">
+        <div class="ms-label">Request ID</div>
+        <div class="ms-value" id="msReqId">—</div>
+      </div>
+      <div class="ms-item">
+        <div class="ms-label">API Latency</div>
+        <div class="ms-value" id="rtApiLatency">—</div>
+      </div>
+      <div class="ms-item">
+        <div class="ms-label">Proxy Latency</div>
+        <div class="ms-value" id="rtProxyLatency">—</div>
+      </div>
+      <div class="ms-item">
+        <div class="ms-label">Mode</div>
+        <div class="ms-value" id="rtMode">—</div>
+      </div>
+      <div class="ms-item">
+        <div class="ms-label">Last Request</div>
+        <div class="ms-value" id="rtLastRequest">—</div>
+      </div>
+      <div class="ms-item">
+        <div class="ms-label">Recommendation</div>
+        <div class="ms-value" id="msRec">—</div>
+      </div>
     </div>
 
     <!-- Raw JSON Response -->
@@ -1692,6 +1917,86 @@ function getPayload() {
   };
 }
 
+// ── Request UUID ─────────────────────────────────────────────
+
+function generateReqId() {
+  return 'req_' + Math.random().toString(36).slice(2, 10).padStart(8, '0').slice(0, 8);
+}
+
+// ── Execution Timeline ────────────────────────────────────────
+
+function resetExecTimeline() {
+  for (let i = 1; i <= 5; i++) {
+    const step = document.getElementById(`et${i}`);
+    if (!step) continue;
+    step.querySelector('.exec-dot').className = 'exec-dot';
+    step.querySelector('.exec-event').className = 'exec-event';
+    document.getElementById(`et${i}ts`).className = 'exec-ts';
+    document.getElementById(`et${i}ts`).textContent = '—';
+  }
+  document.getElementById('et5event').textContent = 'response.ready';
+}
+
+function setExecTimeline(mode, totalMs) {
+  const cls = mode === 'sandbox' ? 'es-sandbox' : 'es-done';
+  const offsets = [0, Math.round(totalMs * 0.08), Math.round(totalMs * 0.35), Math.round(totalMs * 0.72), totalMs];
+  for (let i = 1; i <= 5; i++) {
+    const step = document.getElementById(`et${i}`);
+    if (!step) continue;
+    step.querySelector('.exec-dot').className = `exec-dot ${cls}`;
+    step.querySelector('.exec-event').className = `exec-event ${cls}`;
+    const tsEl = document.getElementById(`et${i}ts`);
+    tsEl.textContent = `+${offsets[i - 1]}ms`;
+    tsEl.className = `exec-ts ${cls}`;
+  }
+  document.getElementById('et5event').textContent = mode === 'sandbox' ? 'sandbox.response.ready' : 'live.response.ready';
+}
+
+// ── Latency Bar ───────────────────────────────────────────────
+
+function resetLatencyBar() {
+  ['Network','Policy','Proof','Render'].forEach(k => {
+    const seg = document.getElementById(`ls${k}`);
+    if (seg) seg.style.width = '0%';
+    const lbl = document.getElementById(`ll${k}`);
+    if (lbl) lbl.textContent = '—';
+  });
+}
+
+function setLatencyBar(totalMs) {
+  const segs = {
+    Network: Math.round(totalMs * 0.18),
+    Policy:  Math.round(totalMs * 0.42),
+    Proof:   Math.round(totalMs * 0.28),
+    Render:  Math.round(totalMs * 0.12)
+  };
+  const total = Object.values(segs).reduce((a, b) => a + b, 0);
+  Object.entries(segs).forEach(([k, ms]) => {
+    const pct = total > 0 ? ((ms / total) * 100).toFixed(1) : '0';
+    const seg = document.getElementById(`ls${k}`);
+    if (seg) seg.style.width = pct + '%';
+    const lbl = document.getElementById(`ll${k}`);
+    if (lbl) lbl.textContent = `${ms}ms`;
+  });
+}
+
+// ── Copy Full Request ─────────────────────────────────────────
+
+function generateFullRequest() {
+  return `POST /v1/decision/run\nContent-Type: application/json\nx-api-key: YOUR_API_KEY\n\n${payloadPre.textContent}`;
+}
+
+// ── Copy Integration Pack ─────────────────────────────────────
+
+function generateIntegrationPack() {
+  const req  = payloadPre.textContent;
+  const resp = jsonResponsePre.textContent;
+  const action      = document.getElementById("Request").value;
+  const destination = document.getElementById("EscalationTarget").value.trim();
+  const source      = document.getElementById("Source").value;
+  return `## Trust OS Integration Pack\n\n### Request\n\`\`\`json\n${req}\n\`\`\`\n\n### Response\n\`\`\`json\n${resp}\n\`\`\`\n\n### cURL\n\`\`\`bash\n${generateCurl()}\n\`\`\`\n\n### JavaScript SDK\n\`\`\`javascript\nconst { TrustOSClient } = require("@trust-os-sdk/trust-os-sdk");\nconst client = new TrustOSClient({ apiKey: process.env.TRUST_OS_API_KEY });\nconst result = await client.verifyDecision({\n  action: "${action}",\n  amount: 50000,\n  currency: "USDC",\n  destination: "${destination}",\n  source: "${source}"\n});\n\`\`\``;
+}
+
 // ── Main Verification Flow ────────────────────────────────────
 
 async function runVerification() {
@@ -1719,6 +2024,14 @@ async function runVerification() {
     setStatus("Running pre-execution verification...");
     setApiMode("connecting");
     resetLifecycle();
+    resetExecTimeline();
+    resetLatencyBar();
+
+    const reqId = generateReqId();
+    document.getElementById('statusReqId').textContent = reqId;
+    document.getElementById('msReqId').textContent     = reqId;
+    document.getElementById('emptyState').style.display    = 'none';
+    document.getElementById('outputContent').style.display = '';
 
     const startedAt = performance.now();
     const payload   = getPayload();
@@ -1768,6 +2081,8 @@ async function runVerification() {
     setApiMode("live");
     lc5Label.innerHTML = "Live response<br>ready";
     setLifecycle(5, "lc-done");
+    setExecTimeline('live', data.latency_ms || clientLatency);
+    setLatencyBar(data.latency_ms || clientLatency);
 
     const liveObj = {
       decision_id:    decisionId,
@@ -1791,7 +2106,7 @@ async function runVerification() {
       payloadText: payloadPre.textContent,
       jsonText: JSON.stringify(liveObj, null, 2)
     });
-    updateRtStrip(data.latency_ms, data.proxy_latency_ms, "live");
+    updateRtStrip(data.latency_ms, data.proxy_latency_ms, "live", rec);
     setModeToggle("live");
 
     verifyBtn.innerHTML = "Live response &#10003;";
@@ -1826,6 +2141,8 @@ async function runVerification() {
     setApiMode("sandbox");
     lc5Label.innerHTML = "Sandbox response<br>ready";
     setLifecycle(5, "lc-sandbox");
+    setExecTimeline('sandbox', sandboxMs);
+    setLatencyBar(sandboxMs);
 
     setJsonResponse({
       decision_id:    sandboxId,
@@ -1853,7 +2170,7 @@ async function runVerification() {
         verified: false, latency_ms: sandboxMs, mode: "sandbox"
       }, null, 2)
     });
-    updateRtStrip(sandboxMs, null, "sandbox");
+    updateRtStrip(sandboxMs, null, "sandbox", p.fallbackRec);
     setModeToggle("sandbox");
 
     verifyBtn.innerHTML = "Sandbox response &#10003;";
@@ -1934,14 +2251,19 @@ function setModeToggle(mode) {
 
 // ── Response Time Mini Strip ──────────────────────────────────
 
-function updateRtStrip(apiLatency, proxyLatency, mode) {
+function updateRtStrip(apiLatency, proxyLatency, mode, rec) {
   const now = new Date().toLocaleTimeString("en-US", { hour12: false });
   document.getElementById("rtApiLatency").textContent   = apiLatency   ? `${apiLatency}ms`   : "—";
   document.getElementById("rtProxyLatency").textContent = proxyLatency ? `${proxyLatency}ms` : "—";
   document.getElementById("rtLastRequest").textContent  = now;
   const el = document.getElementById("rtMode");
   el.textContent = mode || "—";
-  el.className   = "rt-value" + (mode === "live" ? " rt-live" : mode === "sandbox" ? " rt-sandbox" : "");
+  el.className   = "ms-value" + (mode === "live" ? " ms-live" : mode === "sandbox" ? " ms-sandbox" : "");
+  if (rec) {
+    const msRec = document.getElementById("msRec");
+    msRec.textContent = rec;
+    msRec.className = "ms-value" + (rec === "APPROVE" ? " ms-approve" : rec === "REVIEW" ? " ms-review" : rec === "DENY" ? " ms-deny" : "");
+  }
 }
 
 // ── Request History ───────────────────────────────────────────
@@ -2043,6 +2365,52 @@ document.getElementById("copySdkBtn").addEventListener("click", async () => {
   } catch {
     btn.textContent = "Copy failed";
     setTimeout(() => { btn.textContent = "Copy SDK"; }, 1500);
+  }
+});
+
+// ── Copy Headers ─────────────────────────────────────────────
+
+document.getElementById("copyHeadersBtn").addEventListener("click", async () => {
+  const btn  = document.getElementById("copyHeadersBtn");
+  const text = "Content-Type: application/json\nx-api-key: YOUR_API_KEY";
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = "Copied ✓";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = "Copy Headers"; btn.classList.remove("copied"); }, 1500);
+  } catch {
+    btn.textContent = "Copy failed";
+    setTimeout(() => { btn.textContent = "Copy Headers"; }, 1500);
+  }
+});
+
+// ── Copy Full Request ─────────────────────────────────────────
+
+document.getElementById("copyFullReqBtn").addEventListener("click", async () => {
+  const btn = document.getElementById("copyFullReqBtn");
+  try {
+    await navigator.clipboard.writeText(generateFullRequest());
+    btn.textContent = "Copied ✓";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = "Copy Full Request"; btn.classList.remove("copied"); }, 1500);
+  } catch {
+    btn.textContent = "Copy failed";
+    setTimeout(() => { btn.textContent = "Copy Full Request"; }, 1500);
+  }
+});
+
+// ── Copy Integration Pack ─────────────────────────────────────
+
+document.getElementById("copyIntegrationBtn").addEventListener("click", async () => {
+  const btn = document.getElementById("copyIntegrationBtn");
+  try {
+    await navigator.clipboard.writeText(generateIntegrationPack());
+    btn.textContent = "Copied ✓";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = "Copy Integration Pack"; btn.classList.remove("copied"); }, 1500);
+  } catch {
+    btn.textContent = "Copy failed";
+    setTimeout(() => { btn.textContent = "Copy Integration Pack"; }, 1500);
   }
 });
 
