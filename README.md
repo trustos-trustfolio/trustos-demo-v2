@@ -186,3 +186,35 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 Trust OS is in private beta. API keys are provisioned by invitation.
 
 Contact: admin@trust-os.io
+
+---
+
+## Security
+
+Do not include API keys, secrets, or credentials in issues, pull requests, or commits.
+
+To report a security vulnerability, email **founder@trust-os.io** privately — do not open a public issue.
+
+See [SECURITY.md](SECURITY.md) for the full policy.
+
+---
+
+## Contributing
+
+Issues, documentation improvements, and feature requests are welcome.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. No API key is required to run this playground locally — sandbox mode works without credentials.
+
+---
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for the full history.
+
+**v1.0.0** — Initial public developer platform release (June 2026).
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE).
