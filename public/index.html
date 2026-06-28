@@ -25,20 +25,81 @@
     /* ── Top Nav ── */
     .top-link {
       display: flex;
-      justify-content: flex-end;
+      align-items: center;
+      justify-content: space-between;
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      background: #0e1628;
+      border: 1px solid #1e2d4a;
+      border-radius: 12px;
     }
 
-    .top-link a {
+    .top-link-brand {
       color: #67e8f9;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+
+    .top-link-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      color: rgba(203,213,225,0.5);
+      text-decoration: none;
+      font-size: 12px;
       font-weight: 600;
-      border: 1px solid rgba(103,232,249,0.3);
-      padding: 6px 12px;
-      border-radius: 8px;
-      background: rgba(103,232,249,0.05);
+      padding: 4px 10px;
+      border-radius: 7px;
+      border: 1px solid transparent;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .nav-link:hover {
+      color: #e2e8f0;
+      border-color: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .nav-link-active {
+      color: #67e8f9 !important;
+      border-color: rgba(103,232,249,0.28) !important;
+      background: rgba(103,232,249,0.06) !important;
+    }
+
+    /* ── Response animations ── */
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    @keyframes recPulse {
+      0%,100% { opacity: 1;   }
+      50%     { opacity: 0.6; }
+    }
+
+    #outputContent { animation: fadeSlideIn 0.38s ease-out both; }
+
+    .rec-pulse { animation: recPulse 1.8s ease-in-out 3; }
+
+    /* ── History UUID column ── */
+    .history-item {
+      grid-template-columns: 52px 1fr 64px 54px 58px 80px !important;
+    }
+
+    .hi-id {
+      color: #475569;
+      font-family: monospace;
+      font-size: 9.5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     /* ── Hero ── */
@@ -1019,8 +1080,14 @@
 
     <!-- Nav -->
     <div class="top-link">
-      <a href="https://ops.trust-os.io" target="_blank" rel="noopener">Ops Demo &#8599;</a>
-      <a href="https://trust-os.io/" target="_blank">&#8592; Trust OS</a>
+      <a class="top-link-brand" href="https://trust-os.io" target="_blank">Trust OS</a>
+      <div class="top-link-links">
+        <a class="nav-link" href="https://trust-os.io/Developers" target="_blank">Docs</a>
+        <span class="nav-link nav-link-active">Playground</span>
+        <a class="nav-link" href="https://ops.trust-os.io" target="_blank" rel="noopener">Ops Demo</a>
+        <a class="nav-link" href="https://github.com/trustos-trustfolio" target="_blank" rel="noopener">GitHub</a>
+        <a class="nav-link" href="https://www.npmjs.com/package/@trust-os-sdk/trust-os-sdk" target="_blank" rel="noopener">SDK</a>
+      </div>
     </div>
 
     <!-- Hero -->
@@ -1447,12 +1514,18 @@
 
         <div class="dev-resource-card">
           <div class="dev-resource-label">Install SDK</div>
-          <div class="code-block">npm install @trust-os-sdk/trust-os-sdk</div>
+          <div class="code-block" style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+            <span>npm install @trust-os-sdk/trust-os-sdk</span>
+            <button class="copy-curl-btn" id="copyInstallBtn" type="button" style="flex-shrink:0;white-space:nowrap;">Copy</button>
+          </div>
         </div>
 
         <div class="dev-resource-card">
           <div class="dev-resource-label">Production API</div>
-          <div style="margin-top:6px; font-size:12px; color:#94a3b8; font-family:monospace;">POST /v1/decision/verify</div>
+          <div style="margin-top:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span style="font-size:12px;color:#94a3b8;font-family:monospace;">POST /v1/decision/verify</span>
+            <button class="copy-curl-btn" id="copyEndpointBtn" type="button" style="flex-shrink:0;white-space:nowrap;">Copy</button>
+          </div>
           <a class="dev-resource-link" href="https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev" target="_blank" rel="noopener">
             trustos-core-gateway-v2 &#8599;
           </a>
@@ -1634,6 +1707,33 @@ x-api-key: YOUR_API_KEY
   </div><!-- /wrap -->
 
   <script>
+
+// ── Counter animation ─────────────────────────────────────────
+
+function animateCounter(el, end, duration, prefix, suffix) {
+  const startTime = performance.now();
+  function step(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = (prefix || '') + Math.round(end * eased) + (suffix || '');
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ── Recommendation coloring ───────────────────────────────────
+
+function setRecommendation(el, rec) {
+  el.textContent = rec || '—';
+  el.style.color = rec === 'APPROVE' ? '#4ade80'
+                 : rec === 'REVIEW'  ? '#fbbf24'
+                 : rec === 'DENY'    ? '#f87171'
+                 : '#cbd5e1';
+  el.classList.remove('rec-pulse');
+  void el.offsetWidth; // reflow to restart animation
+  el.classList.add('rec-pulse');
+  setTimeout(() => el.classList.remove('rec-pulse'), 6000);
+}
 
 // ── DOM refs ──────────────────────────────────────────────────
 
@@ -1836,13 +1936,13 @@ function updatePayloadPreview() {
     source:      document.getElementById("Source").value,
     priority:    document.getElementById("Priority").value
   };
-  payloadPre.textContent = JSON.stringify(obj, null, 2);
+  payloadPre.innerHTML = syntaxHighlightJSON(JSON.stringify(obj, null, 2));
 }
 
 // ── Raw JSON Response ─────────────────────────────────────────
 
 function setJsonResponse(obj, mode) {
-  jsonResponsePre.textContent = JSON.stringify(obj, null, 2);
+  jsonResponsePre.innerHTML = syntaxHighlightJSON(JSON.stringify(obj, null, 2));
   jsonResponseBadge.className = `json-response-badge mode-${mode}`;
   if (mode === "live")         jsonResponseBadge.textContent = "Live response";
   else if (mode === "sandbox") jsonResponseBadge.textContent = "Sandbox";
@@ -1937,19 +2037,54 @@ function resetExecTimeline() {
   document.getElementById('et5event').textContent = 'response.ready';
 }
 
+// ── Syntax Highlighting ───────────────────────────────────────
+
+function syntaxHighlightJSON(raw) {
+  if (!raw) return '';
+  const e = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return raw.split('\n').map(line => {
+    let m;
+    // "key": "string"
+    m = line.match(/^(\s*)("(?:[^"\\]|\\.)*")(\s*:\s*)("(?:[^"\\]|\\.)*")(,?)$/);
+    if (m) return m[1]+'<span style="color:#67e8f9">'+e(m[2])+'</span>'+m[3]+'<span style="color:#86efac">'+e(m[4])+'</span>'+m[5];
+    // "key": number
+    m = line.match(/^(\s*)("(?:[^"\\]|\\.)*")(\s*:\s*)(-?\d+(?:\.\d*)?)(,?)$/);
+    if (m) return m[1]+'<span style="color:#67e8f9">'+e(m[2])+'</span>'+m[3]+'<span style="color:#fcd34d">'+e(m[4])+'</span>'+m[5];
+    // "key": true|false|null
+    m = line.match(/^(\s*)("(?:[^"\\]|\\.)*")(\s*:\s*)(true|false|null)(,?)$/);
+    if (m) return m[1]+'<span style="color:#67e8f9">'+e(m[2])+'</span>'+m[3]+'<span style="color:#c4b5fd">'+m[4]+'</span>'+m[5];
+    // standalone string (array element)
+    m = line.match(/^(\s*)("(?:[^"\\]|\\.)*")(,?)$/);
+    if (m) return m[1]+'<span style="color:#86efac">'+e(m[2])+'</span>'+m[3];
+    return e(line);
+  }).join('\n');
+}
+
+// ── Execution Timeline (sequential animation) ─────────────────
+
+const _etTimers = [];
 function setExecTimeline(mode, totalMs) {
-  const cls = mode === 'sandbox' ? 'es-sandbox' : 'es-done';
+  _etTimers.forEach(clearTimeout);
+  _etTimers.length = 0;
+  const cls     = mode === 'sandbox' ? 'es-sandbox' : 'es-done';
   const offsets = [0, Math.round(totalMs * 0.08), Math.round(totalMs * 0.35), Math.round(totalMs * 0.72), totalMs];
+  const delays  = [0, 110, 240, 390, 560];
   for (let i = 1; i <= 5; i++) {
-    const step = document.getElementById(`et${i}`);
-    if (!step) continue;
-    step.querySelector('.exec-dot').className = `exec-dot ${cls}`;
-    step.querySelector('.exec-event').className = `exec-event ${cls}`;
-    const tsEl = document.getElementById(`et${i}ts`);
-    tsEl.textContent = `+${offsets[i - 1]}ms`;
-    tsEl.className = `exec-ts ${cls}`;
+    const idx = i;
+    _etTimers.push(setTimeout(() => {
+      const step = document.getElementById(`et${idx}`);
+      if (!step) return;
+      step.querySelector('.exec-dot').className   = `exec-dot ${cls}`;
+      step.querySelector('.exec-event').className = `exec-event ${cls}`;
+      const tsEl = document.getElementById(`et${idx}ts`);
+      tsEl.textContent = `+${offsets[idx - 1]}ms`;
+      tsEl.className   = `exec-ts ${cls}`;
+      if (idx === 5) {
+        document.getElementById('et5event').textContent =
+          mode === 'sandbox' ? 'sandbox.response.ready' : 'live.response.ready';
+      }
+    }, delays[i - 1]));
   }
-  document.getElementById('et5event').textContent = mode === 'sandbox' ? 'sandbox.response.ready' : 'live.response.ready';
 }
 
 // ── Latency Bar ───────────────────────────────────────────────
@@ -2031,7 +2166,11 @@ async function runVerification() {
     document.getElementById('statusReqId').textContent = reqId;
     document.getElementById('msReqId').textContent     = reqId;
     document.getElementById('emptyState').style.display    = 'none';
-    document.getElementById('outputContent').style.display = '';
+    const outEl = document.getElementById('outputContent');
+    outEl.style.animation = 'none';
+    outEl.style.display   = '';
+    void outEl.offsetWidth;
+    outEl.style.animation = '';
 
     const startedAt = performance.now();
     const payload   = getPayload();
@@ -2062,12 +2201,14 @@ async function runVerification() {
     const rec           = score.recommendation || data.recommendation || "-";
     const risk          = score.risk_level     || data.risk_level     || "-";
 
-    decisionIdValue.textContent     = decisionId;
-    latencyValue.textContent        = `Round trip: ${clientLatency}ms`;
-    recommendationValue.textContent = rec;
-    riskLevelValue.textContent      = risk;
+    decisionIdValue.textContent = decisionId;
+    animateCounter(latencyValue, clientLatency, 900, 'Round trip: ', 'ms');
+    setRecommendation(recommendationValue, rec);
+    riskLevelValue.textContent = risk;
 
-    if (apiRiskScore !== undefined) riskScoreValue.textContent = `risk_score: ${apiRiskScore}`;
+    if (apiRiskScore !== undefined) {
+      animateCounter(riskScoreValue, Math.round(apiRiskScore * 100), 700, 'risk_score: ', '%');
+    }
 
     setBadge(risk);
     setWhyAndPolicy();
@@ -2098,6 +2239,7 @@ async function runVerification() {
     setJsonResponse(liveObj, "live");
     updateSummary(rec, risk, apiRiskScore, data.latency_ms || clientLatency, proof);
     addToHistory({
+      id: decisionId,
       time: new Date().toLocaleTimeString("en-US", { hour12: false }),
       preset: document.getElementById("user_id").value.trim() || activePreset,
       rec, risk, score: apiRiskScore,
@@ -2124,11 +2266,11 @@ async function runVerification() {
     responseBadge.innerHTML     = '<span class="response-badge response-badge-sandbox">Sandbox response</span>';
     sandboxNotice.style.display = "";
 
-    decisionIdValue.textContent     = sandboxId;
-    latencyValue.textContent        = `Round trip: ${sandboxMs}ms`;
-    recommendationValue.textContent = p.fallbackRec;
-    riskLevelValue.textContent      = p.fallbackRisk;
-    riskScoreValue.textContent      = `risk_score: ${p.fallbackScore}`;
+    decisionIdValue.textContent = sandboxId;
+    animateCounter(latencyValue, sandboxMs, 900, 'Round trip: ', 'ms');
+    setRecommendation(recommendationValue, p.fallbackRec);
+    riskLevelValue.textContent = p.fallbackRisk;
+    animateCounter(riskScoreValue, Math.round(p.fallbackScore * 100), 700, 'risk_score: ', '%');
     setBadge(p.fallbackRisk);
 
     whyList.innerHTML    = p.why.map(w   => `<li>${w}</li>`).join("");
@@ -2158,6 +2300,7 @@ async function runVerification() {
 
     updateSummary(p.fallbackRec, p.fallbackRisk, p.fallbackScore, sandboxMs, sandboxHash);
     addToHistory({
+      id: sandboxId,
       time: new Date().toLocaleTimeString("en-US", { hour12: false }),
       preset: document.getElementById("user_id").value.trim() || activePreset,
       rec: p.fallbackRec, risk: p.fallbackRisk, score: p.fallbackScore,
@@ -2284,12 +2427,13 @@ function renderHistory() {
   panel.style.display = "";
   list.textContent = `${requestHistory.length} of ${MAX_HISTORY}`;
   document.getElementById("historyList").innerHTML = requestHistory.map((e, i) => `
-    <div class="history-item" onclick="restoreHistory(${i})">
+    <div class="history-item" onclick="restoreHistory(${i})" title="Click to restore request">
       <span class="hi-time">${e.time}</span>
       <span class="hi-preset">${e.preset}</span>
       <span class="hi-rec hi-${e.rec ? e.rec.toLowerCase() : ""}">${e.rec || "—"}</span>
       <span class="hi-risk hi-${e.risk ? e.risk.toLowerCase() : ""}">${e.risk || "—"}</span>
       <span class="hi-mode hi-${e.mode}">${e.mode === "live" ? "Live" : "Sandbox"}</span>
+      <span class="hi-id" title="${e.id || ""}">${e.id ? e.id.slice(-8) : "—"}</span>
     </div>
   `).join("");
 }
@@ -2297,8 +2441,8 @@ function renderHistory() {
 function restoreHistory(idx) {
   const e = requestHistory[idx];
   if (!e) return;
-  payloadPre.textContent      = e.payloadText;
-  jsonResponsePre.textContent = e.jsonText;
+  payloadPre.innerHTML      = syntaxHighlightJSON(e.payloadText);
+  jsonResponsePre.innerHTML = syntaxHighlightJSON(e.jsonText);
   jsonResponseBadge.className = `json-response-badge mode-${e.mode}`;
   jsonResponseBadge.textContent = e.mode === "live" ? "Live response" : "Sandbox";
   updateSummary(e.rec, e.risk, e.score, e.latencyMs, e.hash);
@@ -2411,6 +2555,36 @@ document.getElementById("copyIntegrationBtn").addEventListener("click", async ()
   } catch {
     btn.textContent = "Copy failed";
     setTimeout(() => { btn.textContent = "Copy Integration Pack"; }, 1500);
+  }
+});
+
+// ── Copy Install Command ──────────────────────────────────────
+
+document.getElementById("copyInstallBtn").addEventListener("click", async () => {
+  const btn = document.getElementById("copyInstallBtn");
+  try {
+    await navigator.clipboard.writeText("npm install @trust-os-sdk/trust-os-sdk");
+    btn.textContent = "Copied ✓";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1500);
+  } catch {
+    btn.textContent = "Failed";
+    setTimeout(() => { btn.textContent = "Copy"; }, 1500);
+  }
+});
+
+// ── Copy Production Endpoint ──────────────────────────────────
+
+document.getElementById("copyEndpointBtn").addEventListener("click", async () => {
+  const btn = document.getElementById("copyEndpointBtn");
+  try {
+    await navigator.clipboard.writeText("https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify");
+    btn.textContent = "Copied ✓";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1500);
+  } catch {
+    btn.textContent = "Failed";
+    setTimeout(() => { btn.textContent = "Copy"; }, 1500);
   }
 });
 
