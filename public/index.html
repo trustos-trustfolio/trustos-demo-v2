@@ -637,7 +637,7 @@
 
     .dev-resource-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
 
@@ -731,7 +731,7 @@
     /* ── Use Cases ── */
     .use-cases { margin-top: 52px; }
 
-    .use-case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .use-case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 
     .use-case-card       { border: 1px solid #273556; border-radius: 12px; padding: 16px; background: #10182d; }
     .use-case-card-title { font-weight: 700; margin-bottom: 8px; color: #fff; }
@@ -936,6 +936,24 @@
     .contract-table td:first-child  { color: #93c5fd; }
     .contract-table td:nth-child(2) { color: #475569; }
     .contract-table tr:last-child td { border-bottom: none; }
+
+    /* ── Risk Priority Chips ── */
+    .risk-chips { display: flex; gap: 6px; }
+    .risk-chip {
+      padding: 6px 16px;
+      border-radius: 8px;
+      border: 1px solid #273556;
+      background: #0f162b;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+    .risk-chip:hover { border-color: #3b82f6; color: #93c5fd; }
+    .risk-chip.rc-low    { border-color: rgba(74,222,128,0.4);  background: rgba(74,222,128,0.08);  color: #4ade80; }
+    .risk-chip.rc-medium { border-color: rgba(251,191,36,0.4);  background: rgba(251,191,36,0.08);  color: #fbbf24; }
+    .risk-chip.rc-high   { border-color: rgba(248,113,113,0.4); background: rgba(248,113,113,0.08); color: #f87171; }
 
     /* ── Responsive ── */
     @media (max-width: 860px) {
@@ -1212,8 +1230,13 @@
 
         <div class="row">
           <div class="field">
-            <label for="Priority">Risk Priority</label>
-            <input id="Priority" type="text" value="High" />
+            <label>Risk Priority</label>
+            <div class="risk-chips">
+              <button type="button" class="risk-chip" onclick="setRiskPriority('Low')">Low</button>
+              <button type="button" class="risk-chip" onclick="setRiskPriority('Medium')">Medium</button>
+              <button type="button" class="risk-chip rc-high" onclick="setRiskPriority('High')">High</button>
+            </div>
+            <input id="Priority" type="hidden" value="High" />
           </div>
           <div class="field">
             <label for="EscalationTarget">Counterparty / Destination</label>
@@ -1522,12 +1545,11 @@
 
         <div class="dev-resource-card">
           <div class="dev-resource-label">Production API</div>
-          <div style="margin-top:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <div style="margin-top:6px;">
             <span style="font-size:12px;color:#94a3b8;font-family:monospace;">POST /v1/decision/verify</span>
-            <button class="copy-curl-btn" id="copyEndpointBtn" type="button" style="flex-shrink:0;white-space:nowrap;">Copy</button>
           </div>
-          <a class="dev-resource-link" href="https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev" target="_blank" rel="noopener">
-            trustos-core-gateway-v2 &#8599;
+          <a class="dev-resource-link" href="https://trust-os.io/docs" target="_blank" rel="noopener">
+            Decision Verification API &#8599;
           </a>
         </div>
 
@@ -1588,7 +1610,7 @@ const result = await client.verifyDecision({
 import os
 
 response = requests.post(
-    "https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify",
+    "https://api.trust-os.io/v1/decision/verify",
     headers={
         "Content-Type": "application/json",
         "x-api-key": os.environ["TRUST_OS_API_KEY"],
@@ -1622,7 +1644,7 @@ func main() {
 
   req, _ := http.NewRequest(
     "POST",
-    "https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify",
+    "https://api.trust-os.io/v1/decision/verify",
     bytes.NewBuffer(body),
   )
 
@@ -1636,7 +1658,7 @@ func main() {
 }</pre></div>
 
         <div class="sdk-tab-content" data-tab="rest"><pre class="sdk-code">POST /v1/decision/verify
-Host: trustos-core-gateway-v2-7jm9owrs.an.gateway.dev
+Host: api.trust-os.io
 Content-Type: application/json
 x-api-key: YOUR_API_KEY
 
@@ -1647,7 +1669,7 @@ x-api-key: YOUR_API_KEY
   "destination": "wallet_abc"
 }</pre></div>
 
-        <div class="sdk-tab-content" data-tab="curl"><pre class="sdk-code">curl -X POST https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify \
+        <div class="sdk-tab-content" data-tab="curl"><pre class="sdk-code">curl -X POST https://api.trust-os.io/v1/decision/verify \
   -H "Content-Type: application/json" \
   -H "x-api-key: YOUR_API_KEY" \
   -d '{
@@ -1836,13 +1858,22 @@ const presets = {
 
 let activePreset = "stablecoin";
 
+function setRiskPriority(val) {
+  document.getElementById("Priority").value = val;
+  document.querySelectorAll(".risk-chip").forEach(btn => {
+    btn.className = "risk-chip";
+    if (btn.textContent.trim() === val) btn.classList.add(`rc-${val.toLowerCase()}`);
+  });
+  updatePayloadPreview();
+}
+
 function applyPreset(key) {
   const p = presets[key];
   if (!p) return;
   activePreset = key;
 
   document.getElementById("user_id").value          = p.useCase;
-  document.getElementById("Priority").value         = p.priority;
+  setRiskPriority(p.priority);
   document.getElementById("EscalationTarget").value = p.destination;
 
   const reqSel = document.getElementById("Request");
@@ -2380,9 +2411,7 @@ document.querySelectorAll(".sdk-tab-btn").forEach(btn => {
 ["Request", "Source"].forEach(id => {
   document.getElementById(id).addEventListener("change", updatePayloadPreview);
 });
-["Priority", "EscalationTarget"].forEach(id => {
-  document.getElementById(id).addEventListener("input", updatePayloadPreview);
-});
+document.getElementById("EscalationTarget").addEventListener("input", updatePayloadPreview);
 
 // ── Mode Toggle Visual ────────────────────────────────────────
 
@@ -2460,7 +2489,7 @@ function generateCurl() {
     source:      document.getElementById("Source").value,
     priority:    document.getElementById("Priority").value
   };
-  return `curl -X POST https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify \\\n  -H "Content-Type: application/json" \\\n  -H "x-api-key: YOUR_API_KEY" \\\n  -d '${JSON.stringify(payload, null, 2)}'`;
+  return `curl -X POST https://api.trust-os.io/v1/decision/verify \\\n  -H "Content-Type: application/json" \\\n  -H "x-api-key: YOUR_API_KEY" \\\n  -d '${JSON.stringify(payload, null, 2)}'`;
 }
 
 document.getElementById("copyCurlBtn").addEventListener("click", async () => {
@@ -2573,20 +2602,6 @@ document.getElementById("copyInstallBtn").addEventListener("click", async () => 
   }
 });
 
-// ── Copy Production Endpoint ──────────────────────────────────
-
-document.getElementById("copyEndpointBtn").addEventListener("click", async () => {
-  const btn = document.getElementById("copyEndpointBtn");
-  try {
-    await navigator.clipboard.writeText("https://trustos-core-gateway-v2-7jm9owrs.an.gateway.dev/v1/decision/verify");
-    btn.textContent = "Copied ✓";
-    btn.classList.add("copied");
-    setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1500);
-  } catch {
-    btn.textContent = "Failed";
-    setTimeout(() => { btn.textContent = "Copy"; }, 1500);
-  }
-});
 
 // ── Init ──────────────────────────────────────────────────────
 
