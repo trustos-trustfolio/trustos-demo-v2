@@ -1673,7 +1673,7 @@ x-api-key: YOUR_API_KEY
         </div>
         <div class="use-case-card">
           <div class="use-case-card-title">AI Agent Action Verification</div>
-          <div class="use-case-card-text">Gate high-impact agent tool use &#8212; database writes, API calls, code execution &#8212; with a pre-execution decision check.</div>
+          <div class="use-case-card-text">Gate high-impact agent tool use &#8212; writes, API calls, code execution &#8212; with a pre-execution decision check.</div>
         </div>
         <div class="use-case-card">
           <div class="use-case-card-title">DAO Treasury Verification</div>
@@ -1795,9 +1795,9 @@ const presets = {
     action:      "execute_tool",
     source:      "Agent Framework",
     priority:    "High",
-    destination: "database_write",
+    destination: "write_operation",
     why: [
-      "Agent requested irreversible database write",
+      "Agent requested irreversible write operation",
       "Affected records exceed policy threshold",
       "High-impact action requires pre-execution verification"
     ],
